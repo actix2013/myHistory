@@ -3,9 +3,13 @@
 {% block title %}New Task{% endblock %}
 
 {% block body %}
-    <h1>Create new Task</h1>
+     {% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+<div class="container cust-form-edit">
+    <h1>Créer un nouveau  projet  / une nouvelle tache </h1>
 
     {{ include('task/_form.html.twig') }}
 
     <a href="{{ path('task_index') }}">back to list</a>
+</div>
 {% endblock %}

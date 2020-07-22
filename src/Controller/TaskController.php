@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Mission;
 use App\Entity\Task;
 use App\Form\TaskType;
 use App\Repository\TaskRepository;
@@ -27,15 +28,21 @@ class TaskController extends AbstractController
 
     /**
      * @Route("/new", name="task_new", methods={"GET","POST"})
+     * @Route("/new/{id}", name="task_new_exp", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, ?Mission $mission): Response
     {
         $task = new Task();
         $form = $this->createForm(TaskType::class, $task);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            if($mission) {
+                $mission->addTask($task);
+                $mission->setTitle($mission->getTitle());
+            }
             $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($mission);
             $entityManager->persist($task);
             $entityManager->flush();
 

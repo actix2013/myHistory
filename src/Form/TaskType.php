@@ -15,9 +15,15 @@ class TaskType extends AbstractType
             ->add('name')
             ->add('linkGithub')
             ->add('linkWebsite')
-            ->add('skills')
-            ->add('mission')
-        ;
+            ->add(
+                'skills',
+                null,
+                [
+                    "choice_label" => "name",
+                    "expanded" => true,
+                    "multiple" => true,
+                ]
+            );
     }
 
     public function configureOptions(OptionsResolver $resolver)
@@ -26,4 +32,5 @@ class TaskType extends AbstractType
             'data_class' => Task::class,
         ]);
     }
+
 }

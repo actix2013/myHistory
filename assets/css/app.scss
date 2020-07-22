@@ -7,8 +7,8 @@ body , html  {
     font-family: 'Inconsolata', monospace;
 }
 .container-navbar {
-    height: 80px;
-    min-height: 80px;
+    height: 65px;
+    min-height: 65px;
     background-color: red;
 }
 
@@ -17,8 +17,8 @@ body , html  {
     padding-top: 20px;
 
     button, a {
-        padding: 20px;
-        margin-left: 10px;
+        padding: 10px;
+        margin:10px;
         height: 100px;
         background-color: white;
         color: black !important;
@@ -40,4 +40,47 @@ article {
 
 .cust-radius-top {
     border-radius: 5px 5px 0 0;
+}
+
+.cust-textcolor-red {
+    corlor: red;
+}
+
+.cust-form-edit {
+
+    div{
+        form{
+            button {
+                margin-bottom: 10px;
+                border-style: solid;
+                border-color: red;
+                border-width: 2px;
+                background-color: white;
+            }
+        }
+    }
+    a {
+        padding-top: 30px !important;
+        color: red;
+    }
+    form {
+        button{
+            border-style: solid;
+            border-color: red;
+            border-width: 2px;
+            background-color: white;
+        }
+    }
+}
+
+
+.zoom {
+    transition: transform .2s; /* Animation */
+    width: auto;
+    height: auto;
+    margin: 0 auto;
+}
+
+.zoom:hover {
+    transform: scale(1.03); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
