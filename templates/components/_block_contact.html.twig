@@ -3,22 +3,26 @@
         <h2>{{ title|default('Save') }}</h2>
     </div>
     <div class="d-inline-flex">
+        {% if user %}
         <ul class="ml-5 mt-3">
             <li class="ml-5">
-                <p>Guillaume CAVALIE</p>
+                <p> {{ user.firstName }} {{ user.lastName }}</p>
             </li>
             <li class="ml-5">
-                <p>38 ans, 1 enfant</p>
+                <p>{{ user.age }} ans,  {{ user.nbChild }} enfant(s)</p>
             </li>
             <li class="ml-5">
-                <p>Téléphonne : </p>
+                <p>Tél. : {{ user.mobile }} </p>
             </li>
             <li class="ml-5">
-                <p>email :</p>
+                <p>email : {{ user.email }}</p>
             </li>
             <li class="ml-5">
                 <p>linkedin :</p>
             </li>
         </ul>
+        {% else %}
+            <p>Connectez vous pour acceder aux informations</p>
+        {% endif %}
     </div>
 </div>

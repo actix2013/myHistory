@@ -133,6 +133,14 @@ class AppFixtures extends Fixture
         $user->setNbChild(1);
         $user->setMobile("0663181008");
         $user->setEmail("gca@moncv.fr");
+        $user->setProfil('
+                        Après un début de carrière dans l’IT coté infrastructure, j’ai fait le choix de me reconvertir vers du développement d’application web.</br>
+                        En   formation au sein de la Wild Code School, je fais évoluer mes compétences vers un nouveau domaine technique riche et passionnant.</br>
+                        De Powershell, je passe à PHP. </br>
+                        De Kaseya, je passe à GIT.  </br>
+                        De vMware, je passe à Docker.  </br>
+                        De l’approche ITIL, je passe à l’Agilité …. </br>
+        ');
         $this->addReference("gca",$user);
         // creation des missions de type expériences, task  et association des skills
         $numTask = 0;
