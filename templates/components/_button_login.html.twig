@@ -1,3 +1,7 @@
 <div class="container-btn">
-    <a href="#"> Login {{ include('components/_icon_user.html.twig') }} </a>
+    {% if not app.user %}
+        <a href="{{ path("app_login") }}"> Connexion {{ include('components/_icon_user.html.twig') }} </a>
+    {% else %}
+        <a href="{{ path("app_logout") }}"> Déconnexion {{ include('components/_icon_user.html.twig') }} </a>
+    {% endif %}
 </div>
