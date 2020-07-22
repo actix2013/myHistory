@@ -16,6 +16,8 @@ see my cv and portfolio
 - [X] _**Create symfony project**_
 		
 		symfony new --full -version=lts MyHistory
+		composer install
+		composer require --dev symfony/maker-bundle
 
 #[compétences] WireFrame / HTML / CSS 
 - [x] _**wireframe**_
