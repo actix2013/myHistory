@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Category;
+use App\Entity\Skill;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
@@ -65,6 +66,25 @@ class AppFixtures extends Fixture
 
         ];
 
+        $experiences = [
+            "Wild Code School" =>
+                [
+                    "En cours", // date end
+                    "01/03/2020", // date start
+                    "69", // departement
+                    "experience",
+                    "Projet 1 : HTML / CSS / PHP / CSV / Database", // exp one
+                    "Projet 2 : BootStrap / PHP /JS / Database", // exp two
+                    "Projet 3 : BootStrap / PHP / JS / SCSS / Symfony / Databas", // exp 3
+                ],
+            "Wild Code School" =>
+                [
+                    "Projet 1 : HTML / CSS / PHP / CSV / Database",
+                    "Projet 2 : BootStrap / PHP /JS / Database",
+                    "Projet 2 : BootStrap / PHP /JS / Database",
+                ],
+        ];
+
         $cat = 0;
         $skillNb = 0;
         foreach ($values as $key => $skills) {
@@ -83,6 +103,8 @@ class AppFixtures extends Fixture
             }
             $cat++;
         }
+
+
         $manager->flush();
     }
 }
