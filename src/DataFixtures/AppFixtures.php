@@ -3,13 +3,26 @@
 namespace App\DataFixtures;
 
 use App\Entity\Category;
+use App\Entity\Mission;
 use App\Entity\Skill;
+use App\Entity\Task;
+use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 
 class AppFixtures extends Fixture
 {
+
+
+    private $passwordEncoder;
+
+    public function __construct(UserPasswordEncoderInterface $passwordEncoder)
+    {
+        $this->passwordEncoder = $passwordEncoder;
+    }
+
     public function load(ObjectManager $manager)
     {
         // $product = new Product();
@@ -61,7 +74,6 @@ class AppFixtures extends Fixture
                 [
                     "Git/GitHub",
                     "Methode Agile/Scrum",
-
                 ],
 
         ];
@@ -69,22 +81,29 @@ class AppFixtures extends Fixture
         $experiences = [
             "Wild Code School" =>
                 [
-                    "En cours", // date end
-                    "01/03/2020", // date start
+                    "2020-07-31", // date end
+                    "2020-03-01", // date start
                     "69", // departement
-                    "experience",
-                    "Projet 1 : HTML / CSS / PHP / CSV / Database", // exp one
-                    "Projet 2 : BootStrap / PHP /JS / Database", // exp two
-                    "Projet 3 : BootStrap / PHP / JS / SCSS / Symfony / Databas", // exp 3
+                    "", // comment
+                    "https://www.wildcodeschool.com/fr-FR", // linkEstablishment
+                    "Projet 1", // exp one
+                    "Projet 2", // exp two
+                    "Projet 3", // exp 3
                 ],
-            "Wild Code School" =>
+            "Evos-Infogerance" =>
                 [
-                    "Projet 1 : HTML / CSS / PHP / CSV / Database",
-                    "Projet 2 : BootStrap / PHP /JS / Database",
-                    "Projet 2 : BootStrap / PHP /JS / Database",
+                    "2020-02-28", // date end
+                    "2017-01-01", // date start
+                    "69", // departement
+                    "", // comment
+                    "http://www.evos-infogerance.fr/", // linkEstablishment
+                    "Systeme", // exp one
+                    "Reseau", // exp two
+                    "Infogerance", // exp two
                 ],
         ];
 
+        // vcreation des skills et categories
         $cat = 0;
         $skillNb = 0;
         foreach ($values as $key => $skills) {
@@ -103,8 +122,50 @@ class AppFixtures extends Fixture
             }
             $cat++;
         }
-
-
+        // creation du  user
+        $user = new User();
+        $user->setPassword($this->passwordEncoder->encodePassword($user, "pwd"));
+        $user->setFirstName("Guillaume");
+        $user->setLastName("Cavalié");
+        $user->setAge(38);
+        $user->setActive(true);
+        $user->setAddressCity("Lyon");
+        $user->setNbChild(1);
+        $user->setMobile("0663181008");
+        $user->setEmail("gca@moncv.fr");
+        $this->addReference("gca",$user);
+        // creation des missions de type expériences, task  et association des skills
+        $numTask = 0;
+        $numMission = 0 ;
+        foreach ($experiences as $aMission => $details) {
+            $mission = new Mission();
+            $mission->setType("experience");
+            $mission->setTitle($aMission);
+            $mission->setEstablishmentName($aMission);
+            $mission->setDateStart(new \DateTime($details[1]));
+            $mission->setDateEnd(new \DateTime($details[0]));
+            $mission->setComment($details[3]);
+            $mission->setEstablishmentDepartmentNb($details[2]);
+            $mission->setLinkEstablishment($details[4]);
+            for($i = 5;$i < count($details); $i++) {
+                $task = new Task();
+                $task->setName($details[$i]);
+                $task->setLinkGithub("");
+                $task->setLinkWebsite("");
+                $task->addSkill($this->getReference("skillNb_" . rand(0,$skillNb-1)));
+                $task->addSkill($this->getReference("skillNb_" . rand(0, $skillNb-1)));
+                $task->addSkill($this->getReference("skillNb_" . rand(0, $skillNb-1)));
+                $manager->persist($task);
+                $this->addReference("task_$numTask", $task);
+                $mission->addTask($this->getReference("task_$numTask"));
+                $numTask++;
+            }
+            $manager->persist($mission);
+            $this->addReference("mission_$numMission",$mission);
+            $user->addMission($this->getReference("mission_$numMission"));
+            $numMission++;
+        }
+        $manager->persist($user);
         $manager->flush();
     }
 }

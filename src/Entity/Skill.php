@@ -35,9 +35,15 @@ class Skill
      */
     private $category;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Task::class, mappedBy="skills")
+     */
+    private $tasks;
+
     public function __construct()
     {
         $this->missions = new ArrayCollection();
+        $this->tasks = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -93,6 +99,34 @@ class Skill
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Task[]
+     */
+    public function getTasks(): Collection
+    {
+        return $this->tasks;
+    }
+
+    public function addTask(Task $task): self
+    {
+        if (!$this->tasks->contains($task)) {
+            $this->tasks[] = $task;
+            $task->addSkill($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTask(Task $task): self
+    {
+        if ($this->tasks->contains($task)) {
+            $this->tasks->removeElement($task);
+            $task->removeSkill($this);
+        }
 
         return $this;
     }
