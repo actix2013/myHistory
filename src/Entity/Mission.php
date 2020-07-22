@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\MissionRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -71,6 +73,21 @@ class Mission
      * @ORM\Column(type="integer", nullable=true)
      */
     private $type;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="missions")
+     */
+    private $user;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Skill::class, inversedBy="missions")
+     */
+    private $skills;
+
+    public function __construct()
+    {
+        $this->skills = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -205,6 +222,48 @@ class Mission
     public function setType(?string $type): self
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getSkills(): ?skill
+    {
+        return $this->skills;
+    }
+
+    public function setSkills(?skill $skills): self
+    {
+        $this->skills = $skills;
+
+        return $this;
+    }
+
+    public function addSkill(Skill $skill): self
+    {
+        if (!$this->skills->contains($skill)) {
+            $this->skills[] = $skill;
+        }
+
+        return $this;
+    }
+
+    public function removeSkill(Skill $skill): self
+    {
+        if ($this->skills->contains($skill)) {
+            $this->skills->removeElement($skill);
+        }
 
         return $this;
     }
