@@ -1,0 +1,12 @@
+<div class="d-flex flex-fill flex-column shadow m-2 rounded shadow">
+    <div class="d-inline-flex ml-5 border-bottom cust-radius-top">
+        <h2>{{ title|default('') }}</h2>
+    </div>
+    <div class="d-inline-flex">
+        <ul class="mt-3">
+            <li class="ml-5 mr-5">
+                <p> {{ user.profil|raw }} </p>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -52,16 +52,6 @@ class Mission
     /**
      * @ORM\Column(type="string", length=300, nullable=true)
      */
-    private $linkGitHub;
-
-    /**
-     * @ORM\Column(type="string", length=300, nullable=true)
-     */
-    private $linkWebsite;
-
-    /**
-     * @ORM\Column(type="string", length=300, nullable=true)
-     */
     private $linkEstablishment;
 
     /**
@@ -70,7 +60,7 @@ class Mission
     private $establishmentDepartmentNb;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="string", nullable=true)
      */
     private $type;
 
@@ -84,9 +74,15 @@ class Mission
      */
     private $skills;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Task::class, mappedBy="mission")
+     */
+    private $tasks;
+
     public function __construct()
     {
         $this->skills = new ArrayCollection();
+        $this->tasks = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -166,30 +162,6 @@ class Mission
         return $this;
     }
 
-    public function getLinkGitHub(): ?string
-    {
-        return $this->linkGitHub;
-    }
-
-    public function setLinkGitHub(?string $linkGitHub): self
-    {
-        $this->linkGitHub = $linkGitHub;
-
-        return $this;
-    }
-
-    public function getLinkWebsite(): ?string
-    {
-        return $this->linkWebsite;
-    }
-
-    public function setLinkWebsite(?string $linkWebsite): self
-    {
-        $this->linkWebsite = $linkWebsite;
-
-        return $this;
-    }
-
     public function getLinkEstablishment(): ?string
     {
         return $this->linkEstablishment;
@@ -263,6 +235,37 @@ class Mission
     {
         if ($this->skills->contains($skill)) {
             $this->skills->removeElement($skill);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Task[]
+     */
+    public function getTasks(): Collection
+    {
+        return $this->tasks;
+    }
+
+    public function addTask(Task $task): self
+    {
+        if (!$this->tasks->contains($task)) {
+            $this->tasks[] = $task;
+            $task->setMission($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTask(Task $task): self
+    {
+        if ($this->tasks->contains($task)) {
+            $this->tasks->removeElement($task);
+            // set the owning side to null (unless already changed)
+            if ($task->getMission() === $this) {
+                $task->setMission(null);
+            }
         }
 
         return $this;

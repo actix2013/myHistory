@@ -5,8 +5,8 @@
 {% block body %}
 <div class="d-flex flex-row m-5">
     <div class="d-flex w-25 justify-content-center flex-column m-3 p-3 bg-white shadow rounded">
-        {% include "/components/_block_base.html.twig" %}
-        {% include "/components/_block_base.html.twig" %}
+        {{ include("/components/_block_contact.html.twig", {'title': 'CONTACT'}) }}
+        {{ include("/components/_block_profil.html.twig", {'title': 'PROFIL'}) }}
         {% include "/components/_block_base.html.twig" %}
         {% include "/components/_block_base.html.twig" %}
         {% include "/components/_block_base.html.twig" %}
