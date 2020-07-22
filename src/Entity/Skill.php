@@ -29,6 +29,12 @@ class Skill
      */
     private $missions;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="skills")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $category;
+
     public function __construct()
     {
         $this->missions = new ArrayCollection();
@@ -75,6 +81,18 @@ class Skill
             $this->missions->removeElement($mission);
             $mission->removeSkill($this);
         }
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }
