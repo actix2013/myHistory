@@ -1,0 +1,21 @@
+body {
+    background-color: lightgray;
+    font-family: 'Inconsolata', monospace;
+}
+
+
+.container-btn {
+
+    button, a {
+        padding: 5px;
+        background-color: white;
+        color: black !important;
+        border-style: solid;
+        border-color: white;
+        border-width: 2px;
+        border-radius: 5px;
+        text-decoration: none !important;
+        text-decoration-color: black !important;
+
+    }
+}

@@ -1,12 +1,46 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@500&display=swap" rel="stylesheet">
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+</head>
+<body>
+<article>
+    <header>
+        {% block navbar %}
+            {{ include('_navbar.html.twig') }}
+        {% endblock %}
+    </header>
+    <main>
+{#        {% for category, messages in app.flashes %}#}
+{#            {% for message in messages %}#}
+{#                <div class="alert alert-{{ category }} alert-dismissible fade show">#}
+{#                    {{ message }}#}
+{#                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">#}
+{#                        <span aria-hidden="true">&times;</span>#}
+{#                    </button>#}
+{#                </div>#}
+{#            {% endfor %}#}
+{#        {% endfor %}#}
+
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+
+    </main>
+    <footer>
+        {% block footer %}
+
+            </footer>
+        {% endblock %}
+    </footer>
+
+    {{ encore_entry_script_tags('app') }}
+    {% block javascripts %}
+    {% endblock %}
+</article>
+</body>
 </html>
