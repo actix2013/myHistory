@@ -12,12 +12,11 @@ body , html  {
     background-color: red;
 }
 
-
 .container-btn {
     padding: 10px;
     padding-top: 20px;
-    button, a {
 
+    button, a {
         padding: 20px;
         margin-left: 10px;
         height: 100px;
@@ -29,7 +28,6 @@ body , html  {
         border-radius: 5px;
         text-decoration: none !important;
         text-decoration-color: black !important;
-
     }
 }
 
@@ -39,7 +37,6 @@ article {
     grid-template-rows: auto 1fr auto;
     grid-template-columns: 100%;
 }
-
 
 .cust-radius-top {
     border-radius: 5px 5px 0 0;
