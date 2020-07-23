@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Mission;
+use App\Entity\User;
 use App\Form\MissionType;
 use App\Repository\MissionRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -27,15 +28,20 @@ class MissionController extends AbstractController
 
     /**
      * @Route("/new", name="mission_new", methods={"GET","POST"})
+     * @Route("/new/{id<[0-9]{1,}>}", name="mission_new_setuser", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, ?User $user): Response
     {
         $mission = new Mission();
         $form = $this->createForm(MissionType::class, $mission);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            if($user) {
+                $user->addMission($mission);
+            }
             $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
             $entityManager->persist($mission);
             $entityManager->flush();
 

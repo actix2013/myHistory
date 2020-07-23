@@ -5,7 +5,8 @@
 {% block body %}
     <h1>Mission index</h1>
 
-    <table class="table">
+    <div class="container-fluid table-responsive">
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>Id</th>
@@ -33,8 +34,6 @@
                 <td>{{ mission.dateEnd ? mission.dateEnd|date('Y-m-d') : '' }}</td>
                 <td>{{ mission.comment }}</td>
                 <td>{{ mission.mission }}</td>
-                <td>{{ mission.linkGitHub }}</td>
-                <td>{{ mission.linkWebsite }}</td>
                 <td>{{ mission.linkEstablishment }}</td>
                 <td>{{ mission.establishmentDepartmentNb }}</td>
                 <td>{{ mission.type }}</td>
@@ -50,6 +49,7 @@
         {% endfor %}
         </tbody>
     </table>
+    </div>
 
     <a href="{{ path('mission_new') }}">Create new</a>
 {% endblock %}

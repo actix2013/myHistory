@@ -3,9 +3,15 @@
 {% block title %}New Mission{% endblock %}
 
 {% block body %}
+         {% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+<div class="container cust-form-edit">
     <h1>Create new Mission</h1>
 
     {{ include('mission/_form.html.twig') }}
 
+    <div class="mt-3">
     <a href="{{ path('mission_index') }}">back to list</a>
+    </div>
+</div>
 {% endblock %}

@@ -1,0 +1,62 @@
+<div class="d-flex flex-fill flex-column mt-3 cust-shadow">
+    <div class="d-inline-flex ml-5 mt-2 border-bottom cust-radius-top">
+
+        <div class="d-inline-flex">
+            <h2 class="text-danger"><strong>{{ title|default('') }}</strong>
+                {% if app.user  %}
+                    <a class="ml-1 text-danger" data-toggle="tooltip" data-placement="right" title="Ajouter une expérience"
+                       href="{{ path("mission_new_setuser",{ "id": user.id } ) }}">
+                        {{ include('components/_icon_add_task.html.twig') }}
+                    </a>
+                {% endif %}
+            </h2>
+        </div>
+    </div>
+    <div class="d-flex justify-content-md-around flex-column align-items-left flex-fill">
+
+            {% for mission in user.missions %}
+                {% if mission.type == "competence" %}
+                <ul class="ml-3 mt-3">
+                    <li>
+                        <div class="d-inline-flex">
+                        <h3> <strong>{{ mission.title }}</strong>
+                            {% if app.user %}
+                            <a class="ml-1 " data-toggle="tooltip" data-placement="right" title="Ajouter une tache"
+                                    href="{{ path("mission_edit",{ "id": mission.id } ) }}">
+                                {{ include('components/_icon_edit.html.twig') }}
+                            </a>
+                            <a class="ml-1 " data-toggle="tooltip" data-placement="right" title="Ajouter une tache"
+                               href="{{ path("task_new_exp",{ "id": mission.id } ) }}">
+                                {{ include('components/_icon_add_task.html.twig') }}
+                            </a>
+                            {% endif %}
+                        </h3>
+                        </div>
+                        <div>
+                        {% for task in mission.tasks %}
+                            <div class="d-flex flex-row justify-content-start">
+                                <p>{{ task.name }} :
+                                    {% for skill in task.skills %}
+                                    {% if not loop.first %}
+                                        /
+                                    {% endif %} {{ skill.name }}
+                                    {% else %}
+                                <p>Pas de compétences affectée</p>
+                                {% endfor %}
+
+                                </p>
+                                {% if app.user %}
+                                <a class="ml-1 cust-textcolor-red" data-toggle="tooltip" data-placement="right"
+                                   title="Modifier les compétences {{ task.name }}"
+                                   href="{{ path("task_edit",{"id": task.id }) }}">
+                                    {{ include('components/_icon_edit.html.twig') }} </a>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                        </div>
+                    </li>
+                </ul>
+                {% endif %}
+            {% endfor %}
+    </div>
+</div>

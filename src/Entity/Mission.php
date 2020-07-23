@@ -210,7 +210,7 @@ class Mission
         return $this;
     }
 
-    public function getSkills(): ?skill
+    public function getSkills(): Collection
     {
         return $this->skills;
     }
