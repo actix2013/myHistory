@@ -58,7 +58,6 @@ body , html  {
 .container-drop:hover {
     background-color: lightgray;
     border-width: 1px;
-
 }
 
 article {
@@ -129,4 +128,8 @@ article {
     width: 30px;
     height: 30px;
     border-radius: 5px
+}
+
+.fullheight{
+    min-height: 95vh;
 }

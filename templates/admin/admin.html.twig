@@ -3,16 +3,41 @@
 {% block title %}Administration{% endblock %}
 
 {% block body %}
-<div class="d-flex flex-row flex-fill">
-    <div class="d-flex flex-column w-25 bg-danger flew-fill" id="sidebar">
-        opop
-    </div>
-    <div class="d-flex flex-column w-75 bg-light" id="content">
-        {{ render(controller(
-            'App\\Controller\\SkillController::index')) }}
-    </div>
-    </div>
-</div>
+    <div class="d-flex flex-row flex-fill fullheight">
+        <div class="d-flex flex-column w-25 bg-dark flew-fill" id="sidebar">
+            <div class="d-flex justify-content-between boerder mb-1 border-white bg-white pl-2 m-2 text-decoration-none
+            align-items-center rounded shadow pr-2">
+                <a href="{{ path("admin_skill") }}"> Gestion des Compétences
+                </a>
+                {{ include('components/_icon_admin.html.twig') }}
+            </div>
+            <div class="d-flex justify-content-between boerder mb-1 border-white bg-white pl-2 m-2 text-decoration-none
+            align-items-center rounded shadow pr-2">
+                <a href="{{ path("admin_category") }}"> Gestion des category
+                </a>
+                {{ include('components/_icon_admin.html.twig') }}
+            </div>
+            <div class="d-flex justify-content-between boerder mb-1 border-white bg-white pl-2 m-2 text-decoration-none
+            align-items-center rounded shadow pr-2">
+                <a href="{{ path("admin_task") }}"> Gestion des Projets / taches
+                </a>
+                {{ include('components/_icon_admin.html.twig') }}
+            </div>
+        </div>
 
+        <div class="d-flex flex-column w-75 bg-light p-3" id="content">
+            {% if show == "skills" %}
+                {{ render(controller('App\\Controller\\SkillController::index')) }}
+            {% elseif show == "category" %}
+                {{ render(controller('App\\Controller\\CategoryController::index')) }}
+            {% elseif show == "task" %}
+                {{ render(controller('App\\Controller\\TaskController::index')) }}
+                {% else %}
+                <p>Aucune selection</p>
+            {% endif %}
+        </div>
+
+
+    </div>
 
 {% endblock %}

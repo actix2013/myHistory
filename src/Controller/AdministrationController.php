@@ -15,12 +15,35 @@ class AdministrationController extends AbstractController
 
 
     /**
-     * @Route("/admin/skills", name="admin_skills", methods={"GET"})
+     * @Route("/admin/skill", name="admin_skill", methods={"GET"})
      */
-    public function adminSkills(): Response
+    public function adminSkill(): Response
     {
 
         return $this->render('admin/admin.html.twig',["show"=>"skills"]);
 
     }
+
+    /**
+     * @Route("/admin/category", name="admin_category", methods={"GET"})
+     */
+    public function adminCategory(): Response
+    {
+
+        return $this->render('admin/admin.html.twig', ["show" => "category"]);
+
+    }
+
+
+
+/**
+ * @Route("/admin/task", name="admin_task", methods={"GET"})
+ */
+public
+function adminTask(): Response
+{
+
+    return $this->render('admin/admin.html.twig', ["show" => "task"]);
+
+}
 }
