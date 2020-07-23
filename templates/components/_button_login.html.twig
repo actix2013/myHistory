@@ -1,0 +1,9 @@
+<div class="container-btn nav-link">
+    {% if not app.user %}
+        <a class="nav-link container-drop" href="{{ path("app_login") }}"> Connexion
+                {{ include('components/_icon_user.html.twig') }} </a>
+    {% else %}
+        <a class="nav-link container-drop" href="{{ path("app_logout") }}"> Déconnexion
+                {{ include('components/_icon_user.html.twig') }} </a>
+    {% endif %}
+</div>

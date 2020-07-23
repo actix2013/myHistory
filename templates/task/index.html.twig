@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Task index{% endblock %}
+{% block navbar %}<div></div>{% endblock %}
+{% block body %}
+    <h1>Task index</h1>
+<div class="container-fluid">
+    <table class="table table-striped border border-danger">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>LinkGithub</th>
+                <th>LinkWebsite</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for task in tasks %}
+            <tr>
+                <td>{{ task.id }}</td>
+                <td>{{ task.name }}</td>
+                <td>{{ task.linkGithub }}</td>
+                <td>{{ task.linkWebsite }}</td>
+                <td>
+                    <a href="{{ path('task_show', {'id': task.id}) }}">show</a>
+                    <a href="{{ path('task_edit', {'id': task.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+    <a href="{{ path('task_new') }}">Create new</a>
+{% endblock %}

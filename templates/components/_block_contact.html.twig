@@ -1,0 +1,28 @@
+<div class="d-flex flex-fill flex-column m-2 cust-shadow cust-backgroud-motif">
+    <div class="d-inline-flex ml-5 mt-2 border-bottom cust-radius-top">
+        <h2>{{ title|default('Save') }}</h2>
+    </div>
+    <div class="d-inline-flex">
+        {% if user %}
+        <ul class="ml-5 ml-lg-3 mt-3 list-unstyled">
+            <li class="ml-5 ml-lg-3">
+                <p><strong> {{ user.firstName }} {{ user.lastName }}</p></strong>
+            </li>
+            <li class="ml-5 ml-lg-3">
+                <p>{{ user.age }} ans,  {{ user.nbChild }} enfant(s)</p>
+            </li>
+            <li class="ml-5 ml-lg-3">
+                <p>Tél. : {{ user.mobile }} </p>
+            </li>
+            <li class="ml-5 ml-lg-3">
+                <p>email : {{ user.email }}</p>
+            </li>
+            <li class="ml-5 ml-lg-3">
+                <p>linkedin :</p>
+            </li>
+        </ul>
+        {% else %}
+            <p>Connectez vous pour acceder aux informations</p>
+        {% endif %}
+    </div>
+</div>

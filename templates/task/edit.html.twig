@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editer l'expérience{% endblock %}
+
+{% block body %}
+    {% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+        <div class="container cust-form-edit">
+
+            <h1>Editer l'expérience</h1>
+            <div>
+                {{ include('task/_form.html.twig', {'button_label': 'Update'}) }}
+            </div>
+
+
+            {{ include('task/_delete_form.html.twig') }}
+            <a href="{{ path('task_index') }}">back to list</a>
+        </div>
+
+{% endblock %}
