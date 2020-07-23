@@ -79,6 +79,11 @@ class Mission
      */
     private $tasks;
 
+    /**
+     * @ORM\Column(type="string", length=45, nullable=true)
+     */
+    private $duration;
+
     public function __construct()
     {
         $this->skills = new ArrayCollection();
@@ -267,6 +272,18 @@ class Mission
                 $task->setMission(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDuration(): ?string
+    {
+        return $this->duration;
+    }
+
+    public function setDuration(?string $duration): self
+    {
+        $this->duration = $duration;
 
         return $this;
     }
