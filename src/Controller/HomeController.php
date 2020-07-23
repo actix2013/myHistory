@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 
+use App\Repository\SkillRepository;
 use App\Repository\TaskRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -44,12 +45,11 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="home_index", methods={"GET"})
      */
-    public function index(UserRepository $userRepository, TaskRepository $taskRepository): Response
+    public function index(UserRepository $userRepository, TaskRepository $taskRepository, SkillRepository $skillRepository): Response
     {
 
         $logUser = $this->getUser() ? $this->getUser() : $userRepository->findAll()[0];
         $tasksWithGitHubRepo = $taskRepository->getTaskWithGitHubUrl("http");
-
         $tasksWithGitHubInfo = [];
         foreach ($tasksWithGitHubRepo as $taskGitHub) {
             $result = [
@@ -91,11 +91,18 @@ class HomeController extends AbstractController
             ];
         }
 
+        $softSkills = $skillRepository->findByCategory("SOFT");
+        $langues = $skillRepository->findByCategory("lANGUES");
+        $interets = $skillRepository->findByCategory("INTERET");
+
         return $this->render('home/index.html.twig',
             [
                 "user" => $logUser,
                 "informations" => $result,
-                "tasksWithGitHubInfo" => $tasksWithGitHubInfo
+                "tasksWithGitHubInfo" => $tasksWithGitHubInfo,
+                "softSkills" =>  $softSkills,
+                "langues" => $langues,
+                "interets" => $interets
             ]
         );
     }

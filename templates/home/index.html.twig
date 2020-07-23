@@ -8,9 +8,9 @@
     cust-background-red-central">
         {{ include("/components/_block_contact.html.twig", {'title': 'CONTACT'}) }}
         {{ include("/components/_block_profil.html.twig", {'title': 'PROFIL'}) }}
-        {% include "/components/_block_base.html.twig" %}
-        {% include "/components/_block_base.html.twig" %}
-        {% include "/components/_block_base.html.twig" %}
+        {{ include("/components/_block_softskills.html.twig", {'title': 'SOFT SKILLS'}) }}
+        {{ include("/components/_block_interet.html.twig", {'title': 'INTERETS'}) }}
+        {{ include("/components/_block_langues.html.twig", {'title': 'LANGUES'}) }}
     </div>
     <div class="d-flex w-75 justify-content-center flex-column m-3 pl-5 pr-5 pt-3 pb-3 bg-white">
         {{ include('/components/_block_experiences.html.twig', {'title': 'EXPERIENCES'}) }}
