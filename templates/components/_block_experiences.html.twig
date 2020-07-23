@@ -1,14 +1,13 @@
-<div class="d-flex flex-fill flex-column shadow m-2 rounded shadow">
-    <div class="d-inline-flex ml-5 border-bottom cust-radius-top">
-
+<div class="d-flex flex-fill flex-column mt-0 cust-shadow">
+    <div class="d-inline-flex ml-5 mt-2 border-bottom">
         <div class="d-inline-flex">
-            <h2>{{ title|default('') }}
+            <h2 class="text-danger"><strong>{{ title|default('') }}
                 {% if app.user  %}
-                    <a class="ml-1 " data-toggle="tooltip" data-placement="right" title="Ajouter une expérience"
+                    <a class="ml-1 text-danger" data-toggle="tooltip" data-placement="right" title="Ajouter une expérience"
                        href="{{ path("mission_new_setuser",{ "id": user.id } ) }}">
                         {{ include('components/_icon_add_task.html.twig') }}
                     </a>
-                {% endif %}
+                {% endif %}</strong>
             </h2>
         </div>
     </div>
@@ -22,7 +21,7 @@
                         <h3> Du {{ mission.dateStart|date("m/Y") }} au {{ mission.dateEnd|date("m/Y") }}
                             <strong>{{ mission.title }}</strong> ( {{ mission.establishmentDepartmentNb }} )
                             {% if app.user %}
-                            <a class="ml-1 " data-toggle="tooltip" data-placement="right" title="Ajouter une tache"
+                            <a class="ml-1 " data-toggle="tooltip" data-placement="right" title="Modifier la mission"
                                     href="{{ path("mission_edit",{ "id": mission.id } ) }}">
                                 {{ include('components/_icon_edit.html.twig') }}
                             </a>

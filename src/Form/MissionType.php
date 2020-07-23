@@ -55,16 +55,6 @@ class MissionType extends AbstractType
                     "expanded" => false,
                     "multiple" => false,
                 ])
-            ->add(
-                'skills',
-                null,
-
-                [
-                    "label" => "Copétences",
-                    "choice_label" => "name",
-                    "expanded" => true,
-                    "multiple" => true,
-                ])
         ;
     }
 
