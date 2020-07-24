@@ -1,11 +1,13 @@
 # myHistory
-see my cv and portfolio
-#[compétences] WireFrame / HTML / CSS 
+Voici mon cv version Web , cil est contruit dans le cadre d'une evaluation finale pour notre cursus Formation dev Web et Web Mobile.
+
+
+# [compétences] WireFrame / HTML / CSS 
 - [x] _**wireframe**_
 
 	> [Link to wireframes](https://filedn.com/lRT6JcS1sB0bW0nKVxQpO0b/chekpoint4/wireframe.png)
 
-#[compétences] Git
+# [compétences] Git
 - [X] _**Rédiger un wiki / README / manuel de référence / guide utilisateur (admin)**_
 - [X] _**Connaître et utiliser les principales commandes de Git (add, commit, push, pull, clone, remote...)**_
 
@@ -25,7 +27,7 @@ see my cv and portfolio
 	    
 	    create database myHistory; #mysql
 
-#[compétences] Symfony
+#  [compétences] Symfony
 - [X] _**Create symfony project**_
 		
 		symfony new --full -version=lts MyHistory
