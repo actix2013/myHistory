@@ -13,8 +13,15 @@ class SkillType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('missions')
-            ->add('category')
+            ->add(
+                'category',
+                null,
+                [
+                    "label" => "Categorie",
+                    "choice_label" => "name",
+                    "expanded" => false,
+                    "multiple" => false,
+                ])
         ;
     }
 

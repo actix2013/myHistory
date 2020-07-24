@@ -23,6 +23,12 @@
                 </a>
                 {{ include('components/_icon_admin.html.twig') }}
             </div>
+            <div class="d-flex justify-content-between boerder mb-1 border-white bg-white pl-2 m-2 text-decoration-none
+            align-items-center rounded shadow pr-2">
+                <a href="{{ path("admin_mission") }}"> Gestion des Expériences / Competences / Formations
+                </a>
+                {{ include('components/_icon_admin.html.twig') }}
+            </div>
         </div>
 
         <div class="d-flex flex-column w-75 bg-light p-3" id="content">
@@ -32,7 +38,9 @@
                 {{ render(controller('App\\Controller\\CategoryController::index')) }}
             {% elseif show == "task" %}
                 {{ render(controller('App\\Controller\\TaskController::index')) }}
-                {% else %}
+            {% elseif show == "mission" %}
+                {{ render(controller('App\\Controller\\MissionController::index')) }}
+            {% else %}
                 <p>Aucune selection</p>
             {% endif %}
         </div>

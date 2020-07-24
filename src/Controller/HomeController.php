@@ -4,8 +4,11 @@
 namespace App\Controller;
 
 
+use App\Repository\SkillRepository;
 use App\Repository\TaskRepository;
 use App\Repository\UserRepository;
+use App\Services\TimeCalculator;
+use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\HttpFoundation\Response;
@@ -44,12 +47,12 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="home_index", methods={"GET"})
      */
-    public function index(UserRepository $userRepository, TaskRepository $taskRepository): Response
+    public function index(UserRepository $userRepository, TaskRepository $taskRepository, SkillRepository
+    $skillRepository, TimeCalculator $timeCalculator): Response
     {
 
         $logUser = $this->getUser() ? $this->getUser() : $userRepository->findAll()[0];
         $tasksWithGitHubRepo = $taskRepository->getTaskWithGitHubUrl("http");
-
         $tasksWithGitHubInfo = [];
         foreach ($tasksWithGitHubRepo as $taskGitHub) {
             $result = [
@@ -81,9 +84,9 @@ class HomeController extends AbstractController
                     "contributions" => 144
                 ]
             ];
-            // desactivé pour ne pas saturé la limite de requetes github durant les tests
-             //$result = $this->fetchGitHubInformation($taskGitHub->getLinkGithub());
-            //$contributors = $this->fetchGitHubInformation($result["contributors_url"]);
+            // desactivé si necesssaire pour ne pas saturé la limite de requetes github durant les tests
+             $result = $this->fetchGitHubInformation($taskGitHub->getLinkGithub());
+            $contributors = $this->fetchGitHubInformation($result["contributors_url"]);
             $tasksWithGitHubInfo[] = [
                 "response" => $result,
                 "taskGitHub" => $taskGitHub,
@@ -91,11 +94,29 @@ class HomeController extends AbstractController
             ];
         }
 
+        $softSkills = $skillRepository->findByCategory("SOFT");
+        $langues = $skillRepository->findByCategory("lANGUES");
+        $interets = $skillRepository->findByCategory("INTERET");
+
+        // utilisation du  service pour le calcul et l'affectation de la duréee des missions
+        $em = $this->getDoctrine()->getManager();
+        $missions = $logUser->getMissions();
+        foreach ($missions as $mission)
+        {
+            $duration = $timeCalculator->calculateTime($mission->getDateStart(),$mission->getDateEnd());
+            $mission->setDuration($duration);
+            $em->persist($mission);
+        }
+        $em->flush();
+
         return $this->render('home/index.html.twig',
             [
                 "user" => $logUser,
                 "informations" => $result,
-                "tasksWithGitHubInfo" => $tasksWithGitHubInfo
+                "tasksWithGitHubInfo" => $tasksWithGitHubInfo,
+                "softSkills" =>  $softSkills,
+                "langues" => $langues,
+                "interets" => $interets
             ]
         );
     }

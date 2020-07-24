@@ -10,8 +10,9 @@
 
     {{ include('mission/_form.html.twig') }}
 
-    <div class="mt-3">
-    <a href="{{ path('mission_index') }}">back to list</a>
+    <div class="d-flex flex-column justify-content-between m-3">
+        <a href="{{ path('admin_mission') }}">Retour a la liste des taches ( admin )</a>
+        <a href="{{ path('home_index') }}">Retour au Cv</a>
     </div>
 </div>
 {% endblock %}

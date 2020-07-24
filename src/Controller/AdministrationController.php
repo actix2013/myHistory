@@ -46,4 +46,17 @@ function adminTask(): Response
     return $this->render('admin/admin.html.twig', ["show" => "task"]);
 
 }
+
+    /**
+     * @Route("/admin/mission", name="admin_mission", methods={"GET"})
+     */
+    public
+    function adminMission(): Response
+    {
+
+        return $this->render('admin/admin.html.twig', ["show" => "mission"]);
+
+    }
+
+
 }

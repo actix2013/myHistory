@@ -1,0 +1,17 @@
+<div class="d-flex flex-fill flex-column m-2 cust-shadow cust-backgroud-motif">
+    <div class="d-inline-flex ml-5 mt-2 border-bottom cust-radius-top">
+        <h2>{{ title|default('Save') }}</h2>
+    </div>
+    <div class="d-inline-flex">
+        {% if user %}
+        <ul class="ml-5 ml-lg-3 mt-3 list-unstyled">
+            {% for interet in interets %}
+                <li class="ml-5 ml-lg-3">
+                    <p> {{ interet.name }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        {% endif %}
+    </div>
+</div>
