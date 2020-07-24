@@ -6,6 +6,7 @@ use App\Repository\MissionRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=MissionRepository::class)
@@ -21,21 +22,29 @@ class Mission
 
     /**
      * @ORM\Column(type="string", length=45)
+     * @Assert\Regex(
+     *     pattern="/\d/",
+     *     match=false,
+     *     message="l'etablissement doit contenir que des lettres"
+     * )
      */
     private $establishmentName;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank()
      */
     private $title;
 
     /**
      * @ORM\Column(type="date", nullable=true)
+     * @Assert\Date
      */
     private $dateStart;
 
     /**
      * @ORM\Column(type="date", nullable=true)
+     * @Assert\Date
      */
     private $dateEnd;
 
@@ -78,6 +87,11 @@ class Mission
      * @ORM\OneToMany(targetEntity=Task::class, mappedBy="mission")
      */
     private $tasks;
+
+    /**
+     * @ORM\Column(type="string", length=45, nullable=true)
+     */
+    private $duration;
 
     public function __construct()
     {
@@ -267,6 +281,18 @@ class Mission
                 $task->setMission(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDuration(): ?string
+    {
+        return $this->duration;
+    }
+
+    public function setDuration(?string $duration): self
+    {
+        $this->duration = $duration;
 
         return $this;
     }
