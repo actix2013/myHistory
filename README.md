@@ -21,7 +21,7 @@ Voici mon cv version Web , cil est contruit dans le cadre d'une evaluation final
         git checkout -b dev
         git checkout -b US_2
 ***
-#[compétences] SQL 	
+# [compétences] SQL 	
 - [X] _**Modéliser une base de données**_
         [Link to modélisation](https://filedn.com/lRT6JcS1sB0bW0nKVxQpO0b/chekpoint4/database3.png)
 	    
