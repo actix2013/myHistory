@@ -3,7 +3,14 @@
 {% block title %}Accueil{% endblock %}
 
 {% block body %}
+<div class="d-flex flex-fil flex-column justify-content-center align-items-center pt-5 pb-5 cust-backgroud-motif
+zindex-sticky rounded-0">
+    <h1 class="text-danger">GUILLAUME CAVALIE</h1>
+    <h2>Développeur Web PHP / Symfony (Junior) </h2>
+
+</div>
 <div class="d-flex flex-row mt-0 ml-5 mr-5">
+
     <div class="d-flex w-25 justify-content-center flex-column ml-3 mr-3 mt-0 p-3 bg-white
     cust-background-red-central">
         {{ include("/components/_block_contact.html.twig", {'title': 'CONTACT'}) }}
@@ -12,10 +19,9 @@
         {{ include("/components/_block_interet.html.twig", {'title': 'INTERETS'}) }}
         {{ include("/components/_block_langues.html.twig", {'title': 'LANGUES'}) }}
     </div>
-    <div class="d-flex w-75 justify-content-center flex-column m-3 pl-5 pr-5 pt-3 pb-3 bg-white">
+    <div class="d-flex w-75 justify-content-start flex-column m-3 pl-5 pr-5 pt-3 pb-3 bg-white">
         {{ include('/components/_block_experiences.html.twig', {'title': 'EXPERIENCES'}) }}
         {{ include('/components/_block_competence.html.twig', {'title': 'COMPETENCES'}) }}
-        {{ include('/components/_block_base.html.twig', {'title': 'FORMATION'}) }}
 
     </div>
 </div>

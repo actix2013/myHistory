@@ -7,6 +7,8 @@ namespace App\Controller;
 use App\Repository\SkillRepository;
 use App\Repository\TaskRepository;
 use App\Repository\UserRepository;
+use App\Services\TimeCalculator;
+use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\HttpFoundation\Response;
@@ -45,7 +47,8 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="home_index", methods={"GET"})
      */
-    public function index(UserRepository $userRepository, TaskRepository $taskRepository, SkillRepository $skillRepository): Response
+    public function index(UserRepository $userRepository, TaskRepository $taskRepository, SkillRepository
+    $skillRepository, TimeCalculator $timeCalculator): Response
     {
 
         $logUser = $this->getUser() ? $this->getUser() : $userRepository->findAll()[0];
@@ -94,6 +97,17 @@ class HomeController extends AbstractController
         $softSkills = $skillRepository->findByCategory("SOFT");
         $langues = $skillRepository->findByCategory("lANGUES");
         $interets = $skillRepository->findByCategory("INTERET");
+
+        // utilisation du  service pour le calcul et l'affectation de la duréee des missions
+        $em = $this->getDoctrine()->getManager();
+        $missions = $logUser->getMissions();
+        foreach ($missions as $mission)
+        {
+            $duration = $timeCalculator->calculateTime($mission->getDateStart(),$mission->getDateEnd());
+            $mission->setDuration($duration);
+            $em->persist($mission);
+        }
+        $em->flush();
 
         return $this->render('home/index.html.twig',
             [

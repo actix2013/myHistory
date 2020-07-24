@@ -12,6 +12,10 @@
 
     {{ include('mission/_form.html.twig', {'button_label': 'Update'}) }}
     {{ include('mission/_delete_form.html.twig') }}
-        <a href="{{ path('mission_index') }}">back to list</a>
+        <div class="d-flex flex-column justify-content-between m-3">
+            <a href="{{ path('mission_new') }}">Create new</a>
+            <a href="{{ path('admin_mission') }}">Retour a la liste des taches ( admin )</a>
+            <a href="{{ path('home_index') }}">Retour au Cv</a>
+        </div>
 </div>
 {% endblock %}
