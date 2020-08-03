@@ -50,7 +50,7 @@ class HomeController extends AbstractController
     public function index(UserRepository $userRepository, TaskRepository $taskRepository, SkillRepository
     $skillRepository, TimeCalculator $timeCalculator): Response
     {
-
+        $result = [];
         $logUser = $this->getUser() ? $this->getUser() : $userRepository->findAll()[0];
         $tasksWithGitHubRepo = $taskRepository->getTaskWithGitHubUrl("http");
         $tasksWithGitHubInfo = [];
@@ -85,8 +85,8 @@ class HomeController extends AbstractController
                 ]
             ];
             // desactivé si necesssaire pour ne pas saturé la limite de requetes github durant les tests
-             $result = $this->fetchGitHubInformation($taskGitHub->getLinkGithub());
-            $contributors = $this->fetchGitHubInformation($result["contributors_url"]);
+            //$result = $this->fetchGitHubInformation($taskGitHub->getLinkGithub());
+            //$contributors = $this->fetchGitHubInformation($result["contributors_url"]);
             $tasksWithGitHubInfo[] = [
                 "response" => $result,
                 "taskGitHub" => $taskGitHub,
@@ -108,7 +108,6 @@ class HomeController extends AbstractController
             $em->persist($mission);
         }
         $em->flush();
-
         return $this->render('home/index.html.twig',
             [
                 "user" => $logUser,

@@ -86,7 +86,8 @@ class AppFixtures extends Fixture
                     "69", // departement
                     "", // comment
                     "https://www.wildcodeschool.com/fr-FR", // linkEstablishment
-                    "Projet 1", // exp one
+                    "Projet 1",
+                    "github:https://api.github.com/WildCodeSchool/lyon-php-2003-project3-trouvetonboard",// exp one
                     "Projet 2", // exp two
                     "Projet 3", // exp 3
                 ],
@@ -132,7 +133,7 @@ class AppFixtures extends Fixture
         $user->setAddressCity("Lyon");
         $user->setNbChild(1);
         $user->setMobile("0663181008");
-        $user->setEmail("gca@moncv.fr");
+        $user->setEmail("guillaume@moncv.fr");
         $user->setProfil('
                         Après un début de carrière dans l’IT coté infrastructure, j’ai fait le choix de me reconvertir vers du développement d’application web.</br>
                         En   formation au sein de la Wild Code School, je fais évoluer mes compétences vers un nouveau domaine technique riche et passionnant.</br>
@@ -158,7 +159,13 @@ class AppFixtures extends Fixture
             for($i = 5;$i < count($details); $i++) {
                 $task = new Task();
                 $task->setName($details[$i]);
-                $task->setLinkGithub("");
+                if($i < count($details)-1) {
+                    if (strstr($details[$i + 1], "github:")) {
+                        $res = explode("github:",$details[$i+1]);
+                        $i++;
+                    }
+                }
+                $task->setLinkGithub($res[0]);
                 $task->setLinkWebsite("");
                 $task->addSkill($this->getReference("skillNb_" . rand(0,$skillNb-1)));
                 $task->addSkill($this->getReference("skillNb_" . rand(0, $skillNb-1)));
