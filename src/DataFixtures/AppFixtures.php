@@ -141,14 +141,14 @@ class AppFixtures extends Fixture
         }
         // creation du  user
         $user = new User();
-        $user->setPassword($this->passwordEncoder->encodePassword($user, "pwd"));
+        $user->setPassword($this->passwordEncoder->encodePassword($user, "password"));
         $user->setFirstName("Guillaume");
         $user->setLastName("Cavalié");
         $user->setAge(38);
         $user->setActive(true);
         $user->setAddressCity("Lyon");
         $user->setNbChild(1);
-        $user->setMobile("0663181008");
+        $user->setMobile("0663180810");
         $user->setEmail("guillaume@moncv.fr");
         $user->setProfil('
                         Après un début de carrière dans l’IT coté infrastructure, j’ai fait le choix de me reconvertir vers du développement d’application web.</br>
