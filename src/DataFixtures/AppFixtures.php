@@ -30,24 +30,24 @@ class AppFixtures extends Fixture
 
         $values = [
             "SOFT SKILLS" =>
-            [
-                "Motivé",
-                "Persévérant",
-                "Capacité d’adaptation",
-                "Réaliste",
-                "Sérieux",
-            ],
+                [
+                    "Motivé",
+                    "Persévérant",
+                    "Capacité d’adaptation",
+                    "Réaliste",
+                    "Sérieux",
+                ],
             "CENTRE D'INTERETS" =>
-            [
-                "Informatique",
-                "Lou rugby",
-                "Lecture SF / Fantasy",
-            ],
+                [
+                    "Informatique",
+                    "Lou rugby",
+                    "Lecture SF / Fantasy",
+                ],
             "LANGUES" =>
-            [
-                "Francais",
-                "Anglais Technique",
-            ],
+                [
+                    "Francais",
+                    "Anglais Technique",
+                ],
 
             "Languages" =>
                 [
@@ -86,10 +86,26 @@ class AppFixtures extends Fixture
                     "69", // departement
                     "", // comment
                     "https://www.wildcodeschool.com/fr-FR", // linkEstablishment
-                    "Projet 1",
-                    "github:https://api.github.com/WildCodeSchool/lyon-php-2003-project3-trouvetonboard",// exp one
-                    "Projet 2", // exp two
-                    "Projet 3", // exp 3
+                    [
+                        "projet" => "projet 1",
+                        "title" => "Golden-Retro",
+                        "github" => "https://api.github.com/actix2013/lyon-0320-golden-retro",
+                    ],
+                    [
+                        "projet" => "projet 2",
+                        "title" => "SetMind",
+                        "github" => "https://api.github.com/actix2013/lyon-php-2003-project2-setmind",
+                    ],// exp two
+                    [
+                        "projet" => "projet 3",
+                        "title" => "TrouveTonBoard",
+                        "github" => "https://api.github.com/WildCodeSchool/lyon-php-2003-project3-trouvetonboard",
+                    ],
+                    [
+                        "projet" => "projet 4",
+                        "title" => "MyHistory",
+                        "github" => "https://api.github.com/actix2013/myHistory",
+                    ],// exp 3
                 ],
             "Evos-Infogerance" =>
                 [
@@ -113,13 +129,13 @@ class AppFixtures extends Fixture
             $manager->persist($category);
             $this->addReference("category_" . $cat, $category);
             for ($a = 0; $a < count($skills); $a++) {
-                    $skill = new Skill();
-                    $skill->setName($skills[$a]);
-                    $skill->setCategory($this->getReference("category_" . $cat));
-                    $this->addReference("skill_" . $cat . "_" . $a, $skill);
-                    $this->addReference("skillNb_$skillNb", $skill);
-                    $skillNb++;
-                    $manager->persist($skill);
+                $skill = new Skill();
+                $skill->setName($skills[$a]);
+                $skill->setCategory($this->getReference("category_" . $cat));
+                $this->addReference("skill_" . $cat . "_" . $a, $skill);
+                $this->addReference("skillNb_$skillNb", $skill);
+                $skillNb++;
+                $manager->persist($skill);
             }
             $cat++;
         }
@@ -142,10 +158,10 @@ class AppFixtures extends Fixture
                         De vMware, je passe à Docker.  </br>
                         De l’approche ITIL, je passe à l’Agilité …. </br>
         ');
-        $this->addReference("gca",$user);
+        $this->addReference("gca", $user);
         // creation des missions de type expériences, task  et association des skills
         $numTask = 0;
-        $numMission = 0 ;
+        $numMission = 0;
         foreach ($experiences as $aMission => $details) {
             $mission = new Mission();
             $mission->setType("experience");
@@ -156,31 +172,34 @@ class AppFixtures extends Fixture
             $mission->setComment($details[3]);
             $mission->setEstablishmentDepartmentNb($details[2]);
             $mission->setLinkEstablishment($details[4]);
-            for($i = 5;$i < count($details); $i++) {
+            for ($i = 5; $i < count($details); $i++) {
                 $task = new Task();
-                $task->setName($details[$i]);
-                if($i < count($details)-1) {
-                    if (strstr($details[$i + 1], "github:")) {
-                        $res = explode("github:",$details[$i+1]);
-                        $i++;
-                    }
+                $val = $details[$i];
+                var_dump("_____________________");
+                var_dump($details[$i]);
+                if(is_array($val)) {
+                    $task->setName($val["projet"]);
+                    $task->setLinkGithub($val["github"]);
+                } else {
+                    $task->setName($val);
+                    $task->setLinkGithub("");
                 }
-                $task->setLinkGithub($res[0]);
                 $task->setLinkWebsite("");
-                $task->addSkill($this->getReference("skillNb_" . rand(0,$skillNb-1)));
-                $task->addSkill($this->getReference("skillNb_" . rand(0, $skillNb-1)));
-                $task->addSkill($this->getReference("skillNb_" . rand(0, $skillNb-1)));
+                $task->addSkill($this->getReference("skillNb_" . rand(0, $skillNb - 1)));
+                $task->addSkill($this->getReference("skillNb_" . rand(0, $skillNb - 1)));
+                $task->addSkill($this->getReference("skillNb_" . rand(0, $skillNb - 1)));
                 $manager->persist($task);
                 $this->addReference("task_$numTask", $task);
                 $mission->addTask($this->getReference("task_$numTask"));
                 $numTask++;
             }
             $manager->persist($mission);
-            $this->addReference("mission_$numMission",$mission);
+            $this->addReference("mission_$numMission", $mission);
             $user->addMission($this->getReference("mission_$numMission"));
             $numMission++;
         }
         $manager->persist($user);
         $manager->flush();
     }
+
 }
