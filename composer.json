@@ -96,6 +96,11 @@
         "symfony": {
             "allow-contrib": false,
             "require": "4.4.*"
+        },
+        "phpstan": {
+            "includes": [
+                "extension.neon"
+            ]
         }
     }
 }
