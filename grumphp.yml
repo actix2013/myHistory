@@ -64,7 +64,7 @@ parameters:
 #                priority: 994
         phpstan:
             configuration: phpstan.neon
-            level: 7
+            level: max
             memory_limit: '-1'
             metadata:
                 priority: 993
