@@ -4,11 +4,11 @@ parameters:
     process_timeout: 120
     # https://github.com/phpro/grumphp/blob/master/doc/tasks.md
     tasks:
-        clover_coverage:
-            clover_file: ./build/logs/clover.xml
-            level: 70
-            metadata:
-                priority: 1
+#        clover_coverage:
+#            clover_file: ./build/logs/clover.xml
+#            level: 70
+#            metadata:
+#                priority: 1
         git_blacklist:
             keywords:
                 - "die("
@@ -114,7 +114,7 @@ parameters:
         phpstan:
             tasks:
                 - phpstan
-        coverage:
-            tasks:
-                - shell
-                - clover_coverage
+#        coverage:
+#            tasks:
+#                - shell
+#                - clover_coverage
