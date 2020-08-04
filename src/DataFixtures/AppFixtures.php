@@ -89,22 +89,22 @@ class AppFixtures extends Fixture
                     [
                         "projet" => "projet 1",
                         "title" => "Golden-Retro",
-                        "github" => "https://api.github.com/actix2013/lyon-0320-golden-retro",
+                        "github" => "https://api.github.com/repos/actix2013/lyon-0320-golden-retro",
                     ],
                     [
                         "projet" => "projet 2",
                         "title" => "SetMind",
-                        "github" => "https://api.github.com/actix2013/lyon-php-2003-project2-setmind",
+                        "github" => "https://api.github.com/repos/actix2013/lyon-php-2003-project2-setmind",
                     ],// exp two
                     [
                         "projet" => "projet 3",
                         "title" => "TrouveTonBoard",
-                        "github" => "https://api.github.com/WildCodeSchool/lyon-php-2003-project3-trouvetonboard",
+                        "github" => "https://api.github.com/repos/WildCodeSchool/lyon-php-2003-project3-trouvetonboard",
                     ],
                     [
                         "projet" => "projet 4",
                         "title" => "MyHistory",
-                        "github" => "https://api.github.com/actix2013/myHistory",
+                        "github" => "https://api.github.com/repos/actix2013/myHistory",
                     ],// exp 3
                 ],
             "Evos-Infogerance" =>

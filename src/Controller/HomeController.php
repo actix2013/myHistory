@@ -65,7 +65,7 @@ class HomeController extends AbstractController
     {
         $result = [];
         $logUser = $this->getUser() ? $this->getUser() : $userRepository->findAll()[0];
-        $tasksWithGitHubRepo = $taskRepository->getTaskWithGitHubUrl("http");
+        $tasksWithGitHubRepo = $taskRepository->findTasksWithGitHubUrl("http");
         $tasksWithGitHubInfo = [];
         foreach ($tasksWithGitHubRepo as $taskGitHub) {
             $result = [
@@ -98,8 +98,8 @@ class HomeController extends AbstractController
                 ]
             ];
             // desactivé si necesssaire pour ne pas saturé la limite de requetes github durant les tests
-            //$result = $this->fetchGitHubInformation($taskGitHub->getLinkGithub());
-            //$contributors = $this->fetchGitHubInformation($result["contributors_url"]);
+            $result = $this->fetchGitHubInformation($taskGitHub->getLinkGithub());
+            $contributors = $this->fetchGitHubInformation($result["contributors_url"]);
             $tasksWithGitHubInfo[] = [
                 "response" => $result,
                 "taskGitHub" => $taskGitHub,

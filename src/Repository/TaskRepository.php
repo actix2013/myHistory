@@ -53,7 +53,7 @@ class TaskRepository extends ServiceEntityRepository
      *
      * @return array<Task>
      */
-    public function getTasksWithGitHubUrl(string $filter) : array
+    public function findTasksWithGitHubUrl(string $filter) : array
     {
         $qb = $this->createQueryBuilder('t');
         $qb->where('t.linkGithub like :filter')

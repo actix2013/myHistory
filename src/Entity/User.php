@@ -6,6 +6,7 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\PersistentCollection;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -17,17 +18,19 @@ class User implements UserInterface
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @var $id integer unique id for User
+     * @var integer
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @var string
      */
     private $email;
 
     /**
      * @ORM\Column(type="json")
+     * @var array<string>
      */
     private $roles = [];
 
@@ -39,56 +42,67 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=45)
+     * @var string
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=45)
+     * @var string
      */
     private $lastName;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @var integer
      */
     private $age;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @var integer
      */
     private $nbChild;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @var string
      */
     private $addressStreet;
 
     /**
      * @ORM\Column(type="string", length=20, nullable=true)
+     * @var string
      */
     private $addressStreetNumber;
 
     /**
      * @ORM\Column(type="string", length=90, nullable=true)
+     * @var string
      */
     private $addressCity;
 
     /**
      * @ORM\Column(type="string", length=30, nullable=true)
+     * @var string
      */
     private $mobile;
 
     /**
      * @ORM\Column(type="string", length=1000, nullable=true)
+     * @var string
      */
     private $profil;
 
     /**
      * @ORM\Column(type="boolean")
+     * @var boolean
      */
     private $active;
 
     /**
      * @ORM\OneToMany(targetEntity=Mission::class, mappedBy="user")
+     * @var Collection<int, Mission>
      */
     private $missions;
 
@@ -97,6 +111,9 @@ class User implements UserInterface
         $this->missions = new ArrayCollection();
     }
 
+    /**
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
@@ -136,6 +153,11 @@ class User implements UserInterface
         return array_unique($roles);
     }
 
+    /**
+     * @param array<string> $roles
+     *
+     * @return $this
+     */
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
@@ -161,18 +183,19 @@ class User implements UserInterface
     /**
      * @see UserInterface
      */
-    public function getSalt()
+    public function getSalt() : ?string
     {
         // not needed when using the "bcrypt" algorithm in security.yaml
+        return null;
     }
 
     /**
      * @see UserInterface
      */
-    public function eraseCredentials()
+    public function eraseCredentials() : void
     {
         // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
+         //$this->plainPassword = null;
     }
 
     public function getFirstName(): ?string
@@ -296,7 +319,9 @@ class User implements UserInterface
     }
 
     /**
-     * @return Collection|Mission[]
+     * @return  Collection<int,Mission>
+     *
+     *
      */
     public function getMissions(): Collection
     {
@@ -327,7 +352,7 @@ class User implements UserInterface
     }
 
     /**
-     * @return fullname
+     * @return string
      */
     public function getFullName(): String
     {
