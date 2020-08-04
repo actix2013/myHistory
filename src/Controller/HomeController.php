@@ -17,6 +17,9 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class HomeController extends AbstractController
 {
+    /**
+     * @var \Symfony\Contracts\HttpClient\HttpClientInterface
+     */
     private $client;
 
     public function __construct(HttpClientInterface $client)
@@ -25,7 +28,17 @@ class HomeController extends AbstractController
 
     }
 
-    public function fetchGitHubInformation(string $url): array
+    /**
+     * @param string $url
+     *
+     * @return array<gitHubRepositoryInformations>
+     * @throws \Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface
+     * @throws \Symfony\Contracts\HttpClient\Exception\DecodingExceptionInterface
+     * @throws \Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface
+     * @throws \Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface
+     * @throws \Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface
+     */
+    public function fetchGitHubInformation(string $url): ?array
     {
         $response = $this->client->request(
             'GET',

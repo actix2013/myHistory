@@ -5,7 +5,6 @@ namespace App\Repository;
 use App\Entity\Task;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use function Doctrine\ORM\QueryBuilder;
 
 /**
  * @method Task|null find($id, $lockMode = null, $lockVersion = null)
@@ -49,17 +48,19 @@ class TaskRepository extends ServiceEntityRepository
     }
     */
 
-    public function getTaskWithGitHubUrl($value)
+    /**
+     * @param string $filter
+     *
+     * @return array<Task>
+     */
+    public function getTasksWithGitHubUrl(string $filter) : array
     {
-//
-            $qb = $this->createQueryBuilder('t');
-
-        $qb->where('t.linkGithub like :user')
-            ->setParameter('user', "%$value%")
+        $qb = $this->createQueryBuilder('t');
+        $qb->where('t.linkGithub like :filter')
+            ->setParameter('filter', "%$filter%")
             ->getQuery()
             ->getResult();
-        return $qb->getQuery()
-                ->getResult();
 
+        return $qb->getQuery()->getResult();
     }
 }
