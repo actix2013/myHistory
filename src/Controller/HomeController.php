@@ -31,7 +31,7 @@ class HomeController extends AbstractController
     /**
      * @param string $url
      *
-     * @return array<gitHubRepositoryInformations>
+     * @return array<string>
      * @throws \Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface
      * @throws \Symfony\Contracts\HttpClient\Exception\DecodingExceptionInterface
      * @throws \Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface
