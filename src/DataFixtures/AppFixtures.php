@@ -15,7 +15,9 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class AppFixtures extends Fixture
 {
 
-
+    /**
+     * @var \Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface
+     */
     private $passwordEncoder;
 
     public function __construct(UserPasswordEncoderInterface $passwordEncoder)
@@ -23,7 +25,7 @@ class AppFixtures extends Fixture
         $this->passwordEncoder = $passwordEncoder;
     }
 
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager) : void
     {
         // $product = new Product();
         // $manager->persist($product);
@@ -89,22 +91,22 @@ class AppFixtures extends Fixture
                     [
                         "projet" => "projet 1",
                         "title" => "Golden-Retro",
-                        "github" => "https://api.github.com/actix2013/lyon-0320-golden-retro",
+                        "github" => "https://api.github.com/repos/actix2013/lyon-0320-golden-retro",
                     ],
                     [
                         "projet" => "projet 2",
                         "title" => "SetMind",
-                        "github" => "https://api.github.com/actix2013/lyon-php-2003-project2-setmind",
+                        "github" => "https://api.github.com/repos/actix2013/lyon-php-2003-project2-setmind",
                     ],// exp two
                     [
                         "projet" => "projet 3",
                         "title" => "TrouveTonBoard",
-                        "github" => "https://api.github.com/WildCodeSchool/lyon-php-2003-project3-trouvetonboard",
+                        "github" => "https://api.github.com/repos/WildCodeSchool/lyon-php-2003-project3-trouvetonboard",
                     ],
                     [
                         "projet" => "projet 4",
                         "title" => "MyHistory",
-                        "github" => "https://api.github.com/actix2013/myHistory",
+                        "github" => "https://api.github.com/repos/actix2013/myHistory",
                     ],// exp 3
                 ],
             "Evos-Infogerance" =>
@@ -141,14 +143,14 @@ class AppFixtures extends Fixture
         }
         // creation du  user
         $user = new User();
-        $user->setPassword($this->passwordEncoder->encodePassword($user, "pwd"));
+        $user->setPassword($this->passwordEncoder->encodePassword($user, "password"));
         $user->setFirstName("Guillaume");
         $user->setLastName("Cavalié");
         $user->setAge(38);
         $user->setActive(true);
         $user->setAddressCity("Lyon");
         $user->setNbChild(1);
-        $user->setMobile("0663181008");
+        $user->setMobile("0663180810");
         $user->setEmail("guillaume@moncv.fr");
         $user->setProfil('
                         Après un début de carrière dans l’IT coté infrastructure, j’ai fait le choix de me reconvertir vers du développement d’application web.</br>

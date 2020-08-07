@@ -17,6 +17,7 @@ class Mission
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @var integer
      */
     private $id;
 
@@ -27,69 +28,82 @@ class Mission
      *     match=false,
      *     message="l'etablissement doit contenir que des lettres"
      * )
+     * @var string
      */
     private $establishmentName;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\NotBlank()
+     * @var string
      */
     private $title;
 
     /**
      * @ORM\Column(type="date", nullable=true)
      * @Assert\Date
+     * @var \DateTimeInterface|null
      */
     private $dateStart;
 
     /**
      * @ORM\Column(type="date", nullable=true)
      * @Assert\Date
+     * @var \DateTimeInterface|null
      */
     private $dateEnd;
 
     /**
      * @ORM\Column(type="string", length=90, nullable=true)
+     * @var string
      */
     private $comment;
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @var string
      */
     private $mission;
 
     /**
      * @ORM\Column(type="string", length=300, nullable=true)
+     * @var string
      */
     private $linkEstablishment;
 
     /**
      * @ORM\Column(type="string", length=20, nullable=true)
+     * @var string|null
      */
     private $establishmentDepartmentNb;
 
     /**
      * @ORM\Column(type="string", nullable=true)
+     * @var string|null
      */
     private $type;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="missions")
+     * @var \App\Entity\User
      */
     private $user;
 
     /**
      * @ORM\ManyToMany(targetEntity=Skill::class, inversedBy="missions")
+     * @var ArrayCollection<int, \App\Entity\Skill>
      */
     private $skills;
 
     /**
      * @ORM\OneToMany(targetEntity=Task::class, mappedBy="mission")
+     * @var ArrayCollection<int,\App\Entity\Task>
      */
     private $tasks;
 
     /**
      * @ORM\Column(type="string", length=45, nullable=true)
+     * @var string
      */
     private $duration;
 
@@ -193,7 +207,7 @@ class Mission
         return $this->establishmentDepartmentNb;
     }
 
-    public function setEstablishmentDepartmentNb(?int $establishmentDepartmentNb): self
+    public function setEstablishmentDepartmentNb(?string $establishmentDepartmentNb) : self
     {
         $this->establishmentDepartmentNb = $establishmentDepartmentNb;
 
@@ -224,12 +238,18 @@ class Mission
         return $this;
     }
 
-    public function getSkills(): Collection
+    /**
+     * @return \Doctrine\Common\Collections\ArrayCollection<int,Skill>
+     */
+    public function getSkills(): ArrayCollection
     {
         return $this->skills;
     }
 
-    public function setSkills(?skill $skills): self
+    /**
+     * @param \Doctrine\Common\Collections\ArrayCollection<int, Skill>|null $skills
+     */
+    public function setSkills(?ArrayCollection $skills): self
     {
         $this->skills = $skills;
 
@@ -255,7 +275,7 @@ class Mission
     }
 
     /**
-     * @return Collection|Task[]
+     * @return Collection<int, \App\Entity\Task>
      */
     public function getTasks(): Collection
     {

@@ -17,31 +17,37 @@ class Task
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @var integer
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=45)
+     * @var string
      */
     private $name;
 
     /**
      * @ORM\ManyToMany(targetEntity=skill::class, inversedBy="tasks")
+     * @var ArrayCollection<int, Skill>
      */
     private $skills;
 
     /**
      * @ORM\ManyToOne(targetEntity=Mission::class, inversedBy="tasks")
+     * @var \App\Entity\Mission
      */
     private $mission;
 
     /**
      * @ORM\Column(type="string", length=300, nullable=true)
+     * @var string
      */
     private $linkGithub;
 
     /**
      * @ORM\Column(type="string", length=300, nullable=true)
+     * @var string
      */
     private $linkWebsite;
 
@@ -68,7 +74,7 @@ class Task
     }
 
     /**
-     * @return Collection|skill[]
+     * @return ArrayCollection<int, Skill>|skill[]
      */
     public function getSkills(): Collection
     {

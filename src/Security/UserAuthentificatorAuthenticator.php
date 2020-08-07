@@ -25,9 +25,25 @@ class UserAuthentificatorAuthenticator extends AbstractFormLoginAuthenticator im
     use TargetPathTrait;
 
     public const LOGIN_ROUTE = 'app_login';
+
+    /**
+     * @var \Doctrine\ORM\EntityManagerInterface
+     */
     private $entityManager;
+
+    /**
+     * @var \Symfony\Component\Routing\Generator\UrlGeneratorInterface
+     */
     private $urlGenerator;
+
+    /**
+     * @var \Symfony\Component\Security\Csrf\CsrfTokenManagerInterface
+     */
     private $csrfTokenManager;
+
+    /**
+     * @var \Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface
+     */
     private $passwordEncoder;
 
     public function __construct(EntityManagerInterface $entityManager, UrlGeneratorInterface $urlGenerator, CsrfTokenManagerInterface $csrfTokenManager, UserPasswordEncoderInterface $passwordEncoder)
