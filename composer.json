@@ -38,7 +38,13 @@
         "twig/twig": "^2.0"
     },
     "require-dev": {
+        "dama/doctrine-test-bundle": "^6.3",
         "doctrine/doctrine-fixtures-bundle": "^3.3",
+        "phpro/grumphp": "0.17",
+        "phpstan/extension-installer": "^1.0",
+        "phpstan/phpstan": "^0.12.34",
+        "phpstan/phpstan-symfony": "^0.12.7",
+        "sci3ma/symfony-grumphp": "^3.0",
         "symfony/browser-kit": "^4.4",
         "symfony/css-selector": "^4.4",
         "symfony/debug-bundle": "^4.4",
@@ -77,7 +83,8 @@
     "scripts": {
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
-            "assets:install %PUBLIC_DIR%": "symfony-cmd"
+            "assets:install %PUBLIC_DIR%": "symfony-cmd",
+            "security-checker security:check": "script"
         },
         "post-install-cmd": [
             "@auto-scripts"
@@ -93,6 +100,11 @@
         "symfony": {
             "allow-contrib": false,
             "require": "4.4.*"
+        },
+        "phpstan": {
+            "includes": [
+                "extension.neon"
+            ]
         }
     }
 }

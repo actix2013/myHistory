@@ -16,16 +16,20 @@ class Category
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @var integer
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=45)
+     * @var string
+     *
      */
     private $name;
 
     /**
      * @ORM\OneToMany(targetEntity=Skill::class, mappedBy="category")
+     * @var ArrayCollection<int, \App\Entity\Skill>
      */
     private $skills;
 
@@ -52,7 +56,7 @@ class Category
     }
 
     /**
-     * @return Collection|Skill[]
+     * @return Collection<int, \App\Entity\Skill>
      */
     public function getSkills(): Collection
     {

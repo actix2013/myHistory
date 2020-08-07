@@ -35,17 +35,23 @@ class SkillRepository extends ServiceEntityRepository
         ;
     }
     */
-    public function findByCategory($category)
+
+
+    /**
+     * @param string $categoryName
+     *
+     * @return int|mixed|string
+     */
+    public function findByCategory(string $categoryName)
     {
         return $this->createQueryBuilder('skill')
             ->addSelect('cat')
             ->join("skill.category", 'cat')
             ->where('cat.name LIKE :value')
-            ->setParameter(':value', "%$category%")
+            ->setParameter(':value', "%$categoryName%")
             ->orderBy('cat.name', 'ASC')
             ->getQuery()
             ->execute();
-
     }
 
     /*

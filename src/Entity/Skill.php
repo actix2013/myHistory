@@ -16,27 +16,32 @@ class Skill
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @var integer
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=45)
+     * @var string
      */
     private $name;
 
     /**
      * @ORM\ManyToMany(targetEntity=Mission::class, mappedBy="skills")
+     * @var ArrayCollection<int, \App\Entity\Mission>
      */
     private $missions;
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="skills")
      * @ORM\JoinColumn(nullable=false)
+     * @var \App\Entity\Category
      */
     private $category;
 
     /**
      * @ORM\ManyToMany(targetEntity=Task::class, mappedBy="skills")
+     * @var ArrayCollection<int,\App\Entity\Task>
      */
     private $tasks;
 
@@ -64,9 +69,9 @@ class Skill
     }
 
     /**
-     * @return Collection|Mission[]
+     * @return ArrayCollection<int, Mission>
      */
-    public function getMissions(): Collection
+    public function getMissions(): ArrayCollection
     {
         return $this->missions;
     }
@@ -91,6 +96,9 @@ class Skill
         return $this;
     }
 
+    /**
+     * @return \App\Entity\Category|null
+     */
     public function getCategory(): ?Category
     {
         return $this->category;
@@ -104,9 +112,9 @@ class Skill
     }
 
     /**
-     * @return Collection|Task[]
+     * @return ArrayCollection<int, \App\Entity\Task>
      */
-    public function getTasks(): Collection
+    public function getTasks(): ArrayCollection
     {
         return $this->tasks;
     }
