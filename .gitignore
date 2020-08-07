@@ -36,3 +36,7 @@ yarn-error.log
 /.php_cs
 /.php_cs.cache
 ###< friendsofphp/php-cs-fixer ###
+
+###> Build/logs/* logs grumPHP ###
+/build/logs/
+###< Build/logs/* logs grumPHP ###
