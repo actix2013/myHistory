@@ -1,28 +1,28 @@
 <?php
 
-
 namespace App\Services;
-
-
-use DateTime;
 
 class TimeCalculator
 {
-    public function calculateTime (DateTime $start,DateTime $end) : string
+    public function calculateTime(?\DateTimeInterface $start, ?\DateTimeInterface $end): string
     {
-        $diff = $end->diff($start);
-        $nbMounth  = $diff->m;
-        $nbYear = $diff->y;
-        if($nbMounth > 0 && $nbYear > 0) {
-            return $nbYear . " ans et " . $nbMounth ." mois";
+        $nbMounth = 0;
+        $nbYear = 0;
+        if ($start && $end) {
+            $diff = $end->diff($start);
+            $nbMounth = $diff->m;
+            $nbYear = $diff->y;
         }
-        if ($nbMounth === 0 && $nbYear > 0) {
-            return $nbYear . " ans";
+        if ($nbMounth > 0 && $nbYear > 0) {
+            return $nbYear.' ans et '.$nbMounth.' mois';
         }
-        if ($nbMounth > 0 && $nbYear == 0) {
-            return $nbMounth . " mois";
+        if (0 === $nbMounth && $nbYear > 0) {
+            return $nbYear.' ans';
         }
-        return "error";
-    }
+        if ($nbMounth > 0 && 0 == $nbYear) {
+            return $nbMounth.' mois';
+        }
 
+        return 'error';
+    }
 }
