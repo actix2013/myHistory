@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1596790785">
-  <project timestamp="1596790785">
+<coverage generated="1596790812">
+  <project timestamp="1596790812">
     <package name="DoctrineMigrations">
       <file name="/home/actix/PhpstormProjects/WebCv/migrations/Version20200722110514.php">
         <class name="DoctrineMigrations\Version20200722110514" namespace="DoctrineMigrations">
@@ -884,9 +884,9 @@
     <package name="App\Services">
       <file name="/home/actix/PhpstormProjects/WebCv/src/Services/TimeCalculator.php">
         <class name="App\Services\TimeCalculator" namespace="App\Services">
-          <metrics complexity="10" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="19" coveredstatements="0" elements="20" coveredelements="0"/>
+          <metrics complexity="11" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="19" coveredstatements="0" elements="20" coveredelements="0"/>
         </class>
-        <line num="7" type="method" name="calculateTime" visibility="public" complexity="10" crap="110.00" count="0"/>
+        <line num="7" type="method" name="calculateTime" visibility="public" complexity="11" crap="132.00" count="0"/>
         <line num="8" type="stmt" count="0"/>
         <line num="9" type="stmt" count="0"/>
         <line num="10" type="stmt" count="0"/>
