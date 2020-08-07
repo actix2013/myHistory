@@ -26,7 +26,7 @@ class SkillController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="skill_new", methods={"GET","POST"})
+     * @Route("/new", name="skill_new", methods={"GET", "POST"})
      */
     public function new(Request $request): Response
     {
@@ -59,7 +59,7 @@ class SkillController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="skill_edit", methods={"GET","POST"})
+     * @Route("/{id}/edit", name="skill_edit", methods={"GET", "POST"})
      */
     public function edit(Request $request, Skill $skill): Response
     {
