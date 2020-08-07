@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1596791512">
-  <project timestamp="1596791512">
+<coverage generated="1596793519">
+  <project timestamp="1596793519">
     <package name="DoctrineMigrations">
       <file name="/home/actix/PhpstormProjects/WebCv/migrations/Version20200722110514.php">
         <class name="DoctrineMigrations\Version20200722110514" namespace="DoctrineMigrations">

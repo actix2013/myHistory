@@ -38,5 +38,5 @@ yarn-error.log
 ###< friendsofphp/php-cs-fixer ###
 
 ###> Build/logs/* logs grumPHP ###
-/build/logs/
+/build/logs
 ###< Build/logs/* logs grumPHP ###
