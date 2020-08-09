@@ -101,9 +101,9 @@ class HomeController extends AbstractController
                 ],
             ];
             // desactivé si necesssaire pour ne pas saturé la limite de requetes github durant les tests ---------------
-            $result = $this->fetchGitHubInformation($taskGitHub->getLinkGithub());
-            $contributorUrl = $result ? $result['contributors_url'] : 'http://';
-            $contributors = $contributorUrl ? $this->fetchGitHubInformation($contributorUrl) : null;
+            //$result = $this->fetchGitHubInformation($taskGitHub->getLinkGithub());
+            //$contributorUrl = $result ? $result['contributors_url'] : 'http://';
+            //$contributors = $contributorUrl ? $this->fetchGitHubInformation($contributorUrl) : null;
             //----------------------------------------------------------------------------------------------------------
             $tasksWithGitHubInfo[] = [
                 'response' => $result,
