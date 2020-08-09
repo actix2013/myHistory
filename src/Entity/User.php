@@ -85,6 +85,15 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=45)
+     * @Assert\Type("string")
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *     min=3,
+     *     max=45,
+     *     minMessage="Le prénom doit faire au minimum {{ limit }} characteres de long",
+     *     maxMessage="Le prénom ne peut pas etre plus long que {{ limit }} characteres",
+     *     allowEmptyString=false
+     * )
      *
      * @var string
      */
@@ -101,6 +110,7 @@ class User implements UserInterface
      *     maxMessage="Le prénom ne peut pas etre plus long que {{ limit }} characteres",
      *     allowEmptyString=false
      * )
+     * @Assert\Positive
      *
      * @var int
      */
