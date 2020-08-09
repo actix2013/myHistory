@@ -118,6 +118,11 @@ class User implements UserInterface
      *     type="integer",
      *     message="La valeur '{{ value }}' n'est pasde type : {{ type }}."
      * )
+     * @Assert\Range(
+     *     min=0,
+     *     max=30,
+     *     notInRangeMessage="le nombre d'enfants doit etre compris entre  {{ min }} et {{ max }}",
+     * )
      *
      * @var int
      */
@@ -125,6 +130,8 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank
+     * @Assert\Length("255")
      *
      * @var string
      */
@@ -132,6 +139,8 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=20, nullable=true)
+     * @Assert\NotBlank
+     * @Assert\Length("90")
      *
      * @var string
      */
@@ -139,6 +148,8 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=90, nullable=true)
+     * @Assert\NotBlank
+     * @Assert\Length("90")
      *
      * @var string
      */
@@ -146,6 +157,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=30, nullable=true)
+     * @Assert\Length("30")
      *
      * @var string
      */
@@ -153,6 +165,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=1000, nullable=true)
+     * @Assert\Length("1000")
      *
      * @var string
      */
@@ -160,6 +173,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="boolean")
+     * @Assert\Type("boolean")
      *
      * @var bool
      */
