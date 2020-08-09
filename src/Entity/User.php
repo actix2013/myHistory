@@ -116,7 +116,7 @@ class User implements UserInterface
      * @ORM\Column(type="integer", nullable=true)
      * @Assert\Type(
      *     type="integer",
-     *     message="La valeur "{{ value }}" n'est pasde type : {{ type }}."
+     *     message="La valeur '{{ value }}' n'est pasde type : {{ type }}."
      * )
      *
      * @var int
