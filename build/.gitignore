@@ -1,0 +1,4 @@
+###> logs build grumPHP
+logs/
+logs/clover.xml
+###< logs build gumPHP
