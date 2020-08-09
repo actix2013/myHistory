@@ -57,11 +57,27 @@ class User implements UserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Assert\Length(
+     *     min=8,
+     *     max=300,
+     *     minMessage="Le hash du password doit depasser {{ limit }} characteres",
+     *     maxMessage="Le hash du password ne doit pas depasser {{ limit }} characteres",
+     *     allowEmptyString=false
+     * )
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=45)
+     * @Assert\Type("string")
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *     min=3,
+     *     max=45,
+     *     minMessage="Le prénom doit faire au minimum {{ limit }} characteres de long",
+     *     maxMessage="Le prénom ne peut pas etre plus long que {{ limit }} characteres",
+     *     allowEmptyString=false
+     * )
      *
      * @var string
      */
@@ -76,6 +92,15 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Type("string")
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *     min=3,
+     *     max=45,
+     *     minMessage="Le prénom doit faire au minimum {{ limit }} characteres de long",
+     *     maxMessage="Le prénom ne peut pas etre plus long que {{ limit }} characteres",
+     *     allowEmptyString=false
+     * )
      *
      * @var int
      */
@@ -83,6 +108,10 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Type(
+     *     type="integer",
+     *     message="La valeur "{{ value }}" n'est pasde type : {{ type }}."
+     * )
      *
      * @var int
      */
