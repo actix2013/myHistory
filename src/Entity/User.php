@@ -27,6 +27,13 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=180, unique=true)
      * @Assert\Email
      * @Assert\NotBlank
+     * @Assert\Length(
+     *     min=3,
+     *     max=70,
+     *     minMessage="L'email doit faire au minimum {{ limit }} characteres de long",
+     *     maxMessage="L'email ne peut pas etre plus long que {{ limit }} characteres",
+     *     allowEmptyString=false
+     * )
      *
      * @var string
      */
@@ -34,6 +41,14 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="json")
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *     min=6,
+     *     max=255,
+     *     minMessage="La somme des roles doit depasser {{ limit }} characteres",
+     *     maxMessage="La somme des roles ne doit pas depasser {{ limit }} characteres",
+     *     allowEmptyString=false
+     * )
      *
      * @var array<string>
      */
