@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -24,6 +25,15 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Assert\Email
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *     min=3,
+     *     max=70,
+     *     minMessage="L'email doit faire au minimum {{ limit }} characteres de long",
+     *     maxMessage="L'email ne peut pas etre plus long que {{ limit }} characteres",
+     *     allowEmptyString=false
+     * )
      *
      * @var string
      */
@@ -31,6 +41,14 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="json")
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *     min=6,
+     *     max=255,
+     *     minMessage="La somme des roles doit depasser {{ limit }} characteres",
+     *     maxMessage="La somme des roles ne doit pas depasser {{ limit }} characteres",
+     *     allowEmptyString=false
+     * )
      *
      * @var array<string>
      */
@@ -39,11 +57,27 @@ class User implements UserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Assert\Length(
+     *     min=8,
+     *     max=300,
+     *     minMessage="Le hash du password doit depasser {{ limit }} characteres",
+     *     maxMessage="Le hash du password ne doit pas depasser {{ limit }} characteres",
+     *     allowEmptyString=false
+     * )
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=45)
+     * @Assert\Type("string")
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *     min=3,
+     *     max=45,
+     *     minMessage="Le prénom doit faire au minimum {{ limit }} characteres de long",
+     *     maxMessage="Le prénom ne peut pas etre plus long que {{ limit }} characteres",
+     *     allowEmptyString=false
+     * )
      *
      * @var string
      */
@@ -51,6 +85,15 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=45)
+     * @Assert\Type("string")
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *     min=3,
+     *     max=45,
+     *     minMessage="Le nom doit faire au minimum {{ limit }} characteres de long",
+     *     maxMessage="Le nom ne peut pas etre plus long que {{ limit }} characteres",
+     *     allowEmptyString=false
+     * )
      *
      * @var string
      */
@@ -58,6 +101,12 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Type("int")
+     * @Assert\Range(
+     *     min=14,
+     *     max=150,
+     *     notInRangeMessage="l'age doit etre compris entre  {{ min }}ans et {{ max }}ans",
+     * )
      *
      * @var int
      */
@@ -65,6 +114,15 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Type(
+     *     type="integer",
+     *     message="La valeur '{{ value }}' n'est pasde type : {{ type }}."
+     * )
+     * @Assert\Range(
+     *     min=0,
+     *     max=30,
+     *     notInRangeMessage="le nombre d'enfants doit etre compris entre  {{ min }} et {{ max }}",
+     * )
      *
      * @var int
      */
@@ -72,6 +130,8 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank
+     * @Assert\Length("255")
      *
      * @var string
      */
@@ -79,6 +139,8 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=20, nullable=true)
+     * @Assert\NotBlank
+     * @Assert\Length("90")
      *
      * @var string
      */
@@ -86,6 +148,8 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=90, nullable=true)
+     * @Assert\NotBlank
+     * @Assert\Length("90")
      *
      * @var string
      */
@@ -93,6 +157,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=30, nullable=true)
+     * @Assert\Length("30")
      *
      * @var string
      */
@@ -100,6 +165,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=1000, nullable=true)
+     * @Assert\Length("1000")
      *
      * @var string
      */
@@ -107,6 +173,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="boolean")
+     * @Assert\Type("boolean")
      *
      * @var bool
      */
