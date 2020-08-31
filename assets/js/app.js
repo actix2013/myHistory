@@ -7,6 +7,8 @@
 
 // any CSS you import will output into a single css file (app.css in this case)
 import '../css/app.scss';
+import Vue from 'vue';
+import App from './components/App';
 
 // Need jQuery? Install it with "yarn add jquery", then uncomment to import it.
 
@@ -18,3 +20,7 @@ $(function () {
     $('[data-toggle="tooltip"]').tooltip()
 })
 
+new Vue({
+    el: '#app',
+    render: h => h(App)
+});
