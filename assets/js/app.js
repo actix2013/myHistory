@@ -9,7 +9,7 @@
 import '../css/app.scss';
 import Vue from 'vue';
 import App from './components/App';
-
+import HelloWorld from "./components/HelloWorld";
 // Need jQuery? Install it with "yarn add jquery", then uncomment to import it.
 
 
@@ -22,5 +22,7 @@ $(function () {
 
 new Vue({
     el: '#app',
+    components: { HelloWorld },
     render: h => h(App)
 });
+
