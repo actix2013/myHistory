@@ -17,6 +17,7 @@
             let myPerson = el.dataset.person.split(",");
             this.person.push.apply(this.person,myPerson);
         },
+
     }
 </script>
 

@@ -20,10 +20,13 @@ class VueController extends AbstractController
             'lastName' => 'CtrlCavalié',
         ];
 
+        $lines = ['2 place des pavillons', '69007', 'Lyon'];
+
         return $this->render('vue/index.html.twig', [
             'controller_name' => 'VueController',
             'words' => $words,
             'person' => $person,
+            'lines' => $lines,
         ]);
     }
 }
