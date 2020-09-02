@@ -130,6 +130,8 @@ class HomeController extends AbstractController
 
         $em->flush();
 
+        $lines = ['user alpha1825 a aimé la competence html', 'user beta25 a aimer la compentence SCSS'];
+
         return $this->render(
             'home/index.html.twig',
             [
@@ -139,6 +141,7 @@ class HomeController extends AbstractController
                 'softSkills' => $softSkills,
                 'langues' => $langues,
                 'interets' => $interets,
+                'lines' => $lines,
             ]
         );
     }

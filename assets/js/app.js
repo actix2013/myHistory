@@ -10,7 +10,8 @@ import '../css/app.scss';
 import Vue from 'vue';
 import App from './components/App';
 import HelloWorld from "./components/HelloWorld";
-import AdressLine from "./components/AdressLine";
+import AdressLine from "./components/ConsolePadLine";
+import ConsolePad from "./components/ConsolePad";
 // Need jQuery? Install it with "yarn add jquery", then uncomment to import it.
 
 
@@ -21,6 +22,7 @@ $(function () {
     $('[data-toggle="tooltip"]').tooltip()
 })
 
+/*
 new Vue({
     el: '#app',
     components: { HelloWorld },
@@ -31,4 +33,9 @@ new Vue({
 new Vue({
     el: '#adressLine',
     render: h => h(AdressLine)
+});
+*/
+new Vue({
+    el: '#consolePad',
+    render: h => h(ConsolePad)
 });

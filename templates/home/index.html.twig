@@ -13,6 +13,12 @@ zindex-sticky rounded-0">
 
     <div class="d-flex w-25 justify-content-center flex-column ml-3 mr-3 mt-0 p-3 bg-white
     cust-background-red-central">
+{#        vueJS tests #}
+        <div ref="lines" data-lines="{{ lines|join(',') }}">
+        </div>
+        <div id="consolePad">
+        </div>
+{#        end vueJS Test #}
         {{ include("/components/_block_contact.html.twig", {'title': 'CONTACT'}) }}
         {{ include("/components/_block_profil.html.twig", {'title': 'PROFIL'}) }}
         {{ include("/components/_block_softskills.html.twig", {'title': 'SOFT SKILLS'}) }}
