@@ -6,8 +6,8 @@
         </div>
         <div class="d-inline-flex console cust-radius-buttom">
             <ul class="ml-1 ml-lg-1 mt-1 list-unstyled">
-                <li class="ml-1 ml-lg-1" :key="lineObject.user" v-for="lineObject in lines">
-                    <console-pad-line :lineObject="lineObject"></console-pad-line>
+                <li class="ml-1 ml-lg-1" :key="lineObject.id" v-for="lineObject in lines">
+                    <console-pad-line :line-object="lineObject"></console-pad-line>
                 </li>
             </ul>
         </div>
@@ -17,21 +17,21 @@
 <script>
     import ConsolePadLine from './ConsolePadLine';
     export default {
-        data() {
-            return {
-                lines: '',
-                time: '00:00',
-            }
+        props: {
+            lines: {
+              type: Object,
+            },
         },
         mounted() {
             let el = document.querySelector("div[data-lines]");
-            this.lines = el.dataset.lines;
+            this.lines = JSON.parse(el.dataset.lines);
+            console.log('Valeur de lines ----> ',this.lines);
         },
         components: {
             ConsolePadLine,
         },
 
-    }
+    };
 </script>
 
 <style lang="scss">
