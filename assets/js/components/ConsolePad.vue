@@ -6,8 +6,8 @@
         </div>
         <div class="d-inline-flex console cust-radius-buttom">
             <ul class="ml-1 ml-lg-1 mt-1 list-unstyled">
-                <li class="ml-1 ml-lg-1" :key="line.id" v-for="line in lines">
-                    <console-pad-line :text-line="line"></console-pad-line>
+                <li class="ml-1 ml-lg-1" :key="lineObject.user" v-for="lineObject in lines">
+                    <console-pad-line :lineObject="lineObject"></console-pad-line>
                 </li>
             </ul>
         </div>
@@ -19,15 +19,13 @@
     export default {
         data() {
             return {
-                lines: [],
-                user: 'test',
+                lines: '',
                 time: '00:00',
             }
         },
         mounted() {
             let el = document.querySelector("div[data-lines]");
-            let myLines = el.dataset.lines.split(",");
-            this.lines.push.apply(this.lines, myLines);
+            this.lines = el.dataset.lines;
         },
         components: {
             ConsolePadLine,

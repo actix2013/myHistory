@@ -130,7 +130,19 @@ class HomeController extends AbstractController
 
         $em->flush();
 
-        $lines = ['user alpha1825 a aimé la competence html', 'user beta25 a aimer la compentence SCSS'];
+        $linesArray =
+            [
+                [
+                    'user' => 'alpha1825',
+                    'textLine' => 'a aimé la competence html',
+                ],
+                [
+                    'user' => 'beta486',
+                    'textLine' => ' a aimer la compentence SCSS',
+                ],
+            ];
+
+        $lines = json_encode($linesArray);
 
         return $this->render(
             'home/index.html.twig',

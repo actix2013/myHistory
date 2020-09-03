@@ -14,8 +14,9 @@ zindex-sticky rounded-0">
     <div class="d-flex w-25 justify-content-center flex-column ml-3 mr-3 mt-0 p-3 bg-white
     cust-background-red-central">
 {#        vueJS tests #}
-        <div ref="lines" data-lines="{{ lines|join(',') }}">
+        <div ref="lines" data-lines="{{ lines|json_encode }}">
         </div>
+        {{ dump(lines) }}
         <div id="consolePad">
         </div>
 {#        end vueJS Test #}
