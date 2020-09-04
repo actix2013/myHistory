@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\History;
+use App\Repository\HistoryRepository;
 use App\Repository\SkillRepository;
 use App\Repository\TaskRepository;
 use App\Repository\UserRepository;
@@ -60,8 +62,13 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="home_index", methods={"GET"})
      */
-    public function index(UserRepository $userRepository, TaskRepository $taskRepository, SkillRepository $skillRepository, TimeCalculator $timeCalculator): Response
-    {
+    public function index(
+        UserRepository $userRepository,
+        TaskRepository $taskRepository,
+        SkillRepository $skillRepository,
+        HistoryRepository $historyRepository,
+        TimeCalculator $timeCalculator
+    ): Response {
         /**
          * @var \App\Entity\User $logUser
          */
@@ -130,19 +137,11 @@ class HomeController extends AbstractController
 
         $em->flush();
 
-        $linesArray =
-            [
-                [
-                    'user' => 'alpha1825',
-                    'textLine' => 'a aimé la competence html',
-                ],
-                [
-                    'user' => 'beta486',
-                    'textLine' => ' a aimer la compentence SCSS',
-                ],
-            ];
-
-        $lines = json_encode($linesArray);
+        $linesArray = [];
+        $aHistory = new History();
+        $aHistory->setUserName($logUser->getUsername());
+        $aHistory->setDescription(rand(1000, 9999).' Descrition '.rand(5, 1000));
+        $linesArray[] = $aHistory->__toArray();
 
         return $this->render(
             'home/index.html.twig',
@@ -153,7 +152,7 @@ class HomeController extends AbstractController
                 'softSkills' => $softSkills,
                 'langues' => $langues,
                 'interets' => $interets,
-                'lines' => $lines,
+                'lines' => json_encode($linesArray),
             ]
         );
     }

@@ -1,5 +1,5 @@
 <template>
-    <p class="text-red"> @user: {{ lineObject.user }} > {{ lineObject.textLine }}</p>
+    <p class="text-red mb-0"> @user: {{ lineObject.userName }} > {{ lineObject.description }}</p>
 </template>
 
 <script>
