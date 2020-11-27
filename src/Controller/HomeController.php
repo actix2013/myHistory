@@ -141,7 +141,7 @@ class HomeController extends AbstractController
         $aHistory = new History();
         $aHistory->setUserName($logUser->getUsername());
         $aHistory->setDescription(rand(1000, 9999).' Descrition '.rand(5, 1000));
-        $linesArray[] = $aHistory->__toArray();
+        $linesArray[] = $aHistory->__ToArray();
 
         return $this->render(
             'home/index.html.twig',
