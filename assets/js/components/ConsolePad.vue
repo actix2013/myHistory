@@ -18,6 +18,9 @@
 <script>
     import ConsolePadLine from './ConsolePadLine';
     export default {
+        components: {
+            ConsolePadLine,
+        },
         name: 'parsedLines',
         data: function () {
             return {
@@ -52,12 +55,7 @@
                 // this.$nextTick();
 
             }
-
         },
-        components: {
-            ConsolePadLine,
-        },
-
     };
 </script>
 

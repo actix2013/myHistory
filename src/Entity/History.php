@@ -44,9 +44,25 @@ class History
      */
     private $description;
 
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $timestamp;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $source;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $host;
+
     public function __construct()
     {
         $this->dateCreated = new DateTime('now');
+        $this->timestamp = $this->getDateCreated()->getTimestamp();
     }
 
     public function getId(): ?int
@@ -97,7 +113,45 @@ class History
             'userName' => $this->userName,
             'dateCreated' => $this->getDateCreated(),
             'description' => $this->getDescription(),
+            'timeStamp' => $this->getTimestamp(),
+            'source' => $this->getSource(),
+            'host' => $this->getHost(),
         ];
     }
 
+    public function getTimestamp(): ?float
+    {
+        return $this->timestamp;
+    }
+
+    public function setTimestamp(float $timestamp): self
+    {
+        $this->timestamp = $timestamp;
+
+        return $this;
+    }
+
+    public function getSource(): ?string
+    {
+        return $this->source;
+    }
+
+    public function setSource(string $source): self
+    {
+        $this->source = $source;
+
+        return $this;
+    }
+
+    public function getHost(): ?string
+    {
+        return $this->host;
+    }
+
+    public function setHost(?string $host): self
+    {
+        $this->host = $host;
+
+        return $this;
+    }
 }

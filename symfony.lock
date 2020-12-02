@@ -316,6 +316,9 @@
     "symfony/dependency-injection": {
         "version": "v4.4.10"
     },
+    "symfony/deprecation-contracts": {
+        "version": "v2.2.0"
+    },
     "symfony/doctrine-bridge": {
         "version": "v4.4.10"
     },
