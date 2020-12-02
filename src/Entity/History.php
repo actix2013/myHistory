@@ -12,24 +12,22 @@ use Symfony\Component\Validator\Constraints as Assert;
 class History
 {
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
+     * @ORM\Id
      * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue
      */
     private $id;
-
+    /**
+     * @ORM\Column(type="date")
+     * @Assert\Date
+     *
+     * @var null|\DateTimeInterface
+     */
+    protected $dateCreated;
     /**
      * @ORM\Column(type="string", length=45)
      */
     private $userName;
-
-    /**
-     * @ORM\Column(type="date")
-     * @Assert\Date
-     * @var \DateTimeInterface|null
-     */
-    protected $dateCreated;
-
     /**
      * @ORM\Column(type="string", length=50)
      * @Assert\NotBlank
@@ -40,20 +38,16 @@ class History
      *     maxMessage="La description ne peut pas etre plus long que {{ limit }} characteres",
      *     allowEmptyString=false
      * )
-     *
      */
     private $description;
-
     /**
      * @ORM\Column(type="float")
      */
     private $timestamp;
-
     /**
      * @ORM\Column(type="string", length=255)
      */
     private $source;
-
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
@@ -62,7 +56,7 @@ class History
     public function __construct()
     {
         $this->dateCreated = new DateTime('now');
-        $this->timestamp = $this->getDateCreated()->getTimestamp();
+        $this->timestamp = $this->dateCreated->getTimestamp() ?: 0;
     }
 
     public function getId(): ?int
@@ -106,19 +100,6 @@ class History
         return $this;
     }
 
-    public function __ToArray()
-    {
-        return [
-            'id' => $this->getId(),
-            'userName' => $this->userName,
-            'dateCreated' => $this->getDateCreated(),
-            'description' => $this->getDescription(),
-            'timeStamp' => $this->getTimestamp(),
-            'source' => $this->getSource(),
-            'host' => $this->getHost(),
-        ];
-    }
-
     public function getTimestamp(): ?float
     {
         return $this->timestamp;
@@ -153,5 +134,18 @@ class History
         $this->host = $host;
 
         return $this;
+    }
+
+    public function __toArray()
+    {
+        return [
+            'id' => $this->getId(),
+            'userName' => $this->userName,
+            'dateCreated' => $this->getDateCreated(),
+            'description' => $this->getDescription(),
+            'timeStamp' => $this->getTimestamp(),
+            'source' => $this->getSource(),
+            'host' => $this->getHost(),
+        ];
     }
 }

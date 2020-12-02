@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\History;
-use App\Repository\HistoryRepository;
 use App\Repository\SkillRepository;
 use App\Repository\TaskRepository;
 use App\Repository\UserRepository;
@@ -29,7 +28,7 @@ class HomeController extends AbstractController
     /**
      * @var UserPasswordEncoderInterface
      */
-    private UserPasswordEncoderInterface $userPasswordEncoder;
+    private $userPasswordEncoder;
 
     public function __construct(HttpClientInterface $client, UserPasswordEncoderInterface $userPasswordEncoder)
     {
@@ -72,7 +71,6 @@ class HomeController extends AbstractController
         UserRepository $userRepository,
         TaskRepository $taskRepository,
         SkillRepository $skillRepository,
-        HistoryRepository $historyRepository,
         TimeCalculator $timeCalculator
     ): Response {
         /**
