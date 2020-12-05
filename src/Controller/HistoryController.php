@@ -49,21 +49,17 @@ class HistoryController extends AbstractController
         /**
          * @var History $lastHistory
          */
-
         $lastHistory = $this->historyRepository->findOneBy([], ['id' => 'desc']);
         $now = new DateTime('now');
         $diffLastTimeStamp = $now->getTimestamp() - $lastHistory->getTimestamp();
         if ($diffLastTimeStamp < 5) {
             return new Response('Not autorized server is buzy, wait '.(5 - $diffLastTimeStamp).' seconds before retry');
         }
-
         $data = $request->query->get('history');
-        return dd($request);
         /**
          * @var History $history
          */
         $history = $serializer->deserialize($data, History::class, 'json');
-        return dd($history);
         $history->setHost($request->getHost());
 
         $this->getDoctrine()->getManager()->persist($history);
