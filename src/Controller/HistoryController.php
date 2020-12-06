@@ -39,9 +39,9 @@ class HistoryController extends AbstractController
     }
 
     /**
-     * @Route("/api/history", name="history")
+     * @Route("/api/history", name="history",  methods={"POST"})
      *
-     * @param Request             $request
+     * @param Request $request
      * @param SerializerInterface $serializer
      */
     public function postHistory(Request $request, SerializerInterface $serializer): Response
@@ -53,18 +53,23 @@ class HistoryController extends AbstractController
         $now = new DateTime('now');
         $diffLastTimeStamp = $now->getTimestamp() - $lastHistory->getTimestamp();
         if ($diffLastTimeStamp < 5) {
-            return new Response('Not autorized server is buzy, wait '.(5 - $diffLastTimeStamp).' seconds before retry');
+            return new Response('Not autorized server is buzy, wait ' . (5 - $diffLastTimeStamp) . ' seconds before retry');
         }
-        $data = $request->query->get('history');
+
+        $data = $request->getContent();
         /**
          * @var History $history
          */
+        if (null === $data) {
+            return new Response('unable to read data, receive post values :' . var_dump
+                ($request->getContent()));
+        }
         $history = $serializer->deserialize($data, History::class, 'json');
         $history->setHost($request->getHost());
-
         $this->getDoctrine()->getManager()->persist($history);
         $this->getDoctrine()->getManager()->flush();
 
         return dd($history);
     }
+
 }

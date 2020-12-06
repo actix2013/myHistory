@@ -28,11 +28,9 @@ export default {
     methods: {
         send() {
 
-            const data = {};
-            data['history'] = {"userName": "postman", "description": "created by postman", "source": "postman"};
-            data['top'] = {"userName": "top", "description": "top", "source": "postman"};
-            console.log(data);
-            axios.post('/api/history', data, {timeout: 5000})
+            let history = null;
+            history= {"userName": "experiences", "description": "go hover experience", "source": "vueJS"};
+            axios.post('/api/history',history , {timeout: 5000})
                 .then((message) => {
                     console.log(message);
                 })
