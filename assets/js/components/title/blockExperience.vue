@@ -27,7 +27,6 @@ export default {
     },
     methods: {
         send() {
-
             let history = null;
             history= {"userName": "experiences", "description": "go hover experience", "source": "vueJS"};
             axios.post('/api/history',history , {timeout: 5000})
@@ -36,8 +35,7 @@ export default {
                 })
                 .catch((error) => {
                     console.log(error);
-                })
-            ;
+                });
         },
     },
     watch: {

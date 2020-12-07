@@ -17,6 +17,7 @@
 
 <script>
     import ConsolePadLine from './ConsolePadLine';
+    import axios from "axios";
     export default {
         components: {
             ConsolePadLine,
@@ -48,14 +49,26 @@
                     this.lines.splice(0, 1);
                 }
 
-                this.lines.push(newLine);
+                this.getLastEvents();
+                //this.lines.push(newLine);
                 // this.lines[Object.keys(this.lines).length] = newLine;
                 // this.parsedLines[Object.keys(this.lines).length] = newLine;
                 // console.log(this.lines[2].id);
                 // this.$nextTick();
 
+            },
+            getLastEvents: () => {
+                // contact api
+                axios.get('/api/history')
+                    .then((response) => {
+                        console.log(response.data);
+                    })
+                    .catch((error) => {
+                        console.log(error.message);
+                    });
             }
         },
+
     };
 </script>
 
