@@ -71,10 +71,11 @@ class HistoryController extends AbstractController
     /**
      * @Route("/api/history", name="history",  methods={"GET"})
      *
-     * @param Request $request
-     * @param SerializerInterface $serializer
+     * //    @param Request $request
+     * //    @param SerializerInterface $serializer
      */
-    public function getHistory(Request $request, SerializerInterface $serializer) {
-            return new Response('get history ok');
+    public function getHistory(/*Request $request, SerializerInterface $serializer*/): Response
+    {
+        return new Response('get history ok');
     }
 }
