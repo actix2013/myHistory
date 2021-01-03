@@ -1,8 +1,8 @@
 <template>
 
     <div class="d-flex flex-fill flex-column m-2 cust-shadow cust-backgroud-motif">
-        <div class="d-inline-flex ml-5 mt-2 border-bottom cust-radius-top">
-            <h2 >  Global actions {{ idAdded }}</h2>
+        <div class="d-inline-flex ml-2 mt-2 border-bottom cust-radius-top">
+            <h2><strong>{{ console_ }}</strong></h2>
         </div>
         <div class="d-inline-flex console cust-radius-buttom">
             <ul class="ml-1 ml-lg-1 mt-1 list-unstyled">
@@ -11,7 +11,7 @@
                 </li>
             </ul>
         </div>
-        <button @click="clickDetected">test</button>
+<!--        <button @click="clickDetected">test</button>-->
     </div>
 </template>
 
@@ -23,49 +23,58 @@
             ConsolePadLine,
         },
         name: 'parsedLines',
-        data: function () {
+        data() {
             return {
                 idAdded: 0,
                 lines: [],
+                lastLine: null,
+                console_: "Console"
             }
         },
         mounted() {
             let el = document.querySelector("div[data-lines]");
             this.lines = JSON.parse(el.dataset.lines);
+            this.interval = setInterval(() => this.getLastEvents(), 1000);
         },
         methods: {
-            clickDetected: function (event) {
-                console.log("clickDetected")
-                this.idAdded = this.idAdded + 1;
-                const newLine = {
-                    id: this.idAdded,
-                    userName: "clicker",
-                    description : "manual add numbrer" + this.idAdded,
-                };
-                // this.parsedLines.splice(Object.keys(this.lines).length,1,newLine);
-                // this.parsedLines.splice(Object.keys(this.lines).length);
-                if (Object.keys(this.lines).length > 7 )
-                {
-                    this.lines.splice(0, 1);
-                }
-
-                this.getLastEvents();
-                //this.lines.push(newLine);
-                // this.lines[Object.keys(this.lines).length] = newLine;
-                // this.parsedLines[Object.keys(this.lines).length] = newLine;
-                // console.log(this.lines[2].id);
-                // this.$nextTick();
-
+            clickDetected(event) {
+               console.log("clickDetected")
+               if(this.getLastEvents()) {
+                   console.log('last line:',this.lastLine);
+                   // this.lines[Object.keys(this.lines).length] = newLine;
+                   // this.parsedLines[Object.keys(this.lines).length] = newLine;
+               }
             },
-            getLastEvents: () => {
-                // contact api
+            getLastEvents() {
+                this.switchCaret();
                 axios.get('/api/history')
                     .then((response) => {
-                        console.log(response.data);
+                        if(!this.lastLine) {
+                            this.lastLine = JSON.parse(response.data.data);
+                            this.lines.push(this.lastLine);
+                            if (this.lines.length > 7) {
+                                this.lines.splice(0, 1);
+                            }
+                            return true;
+                        }
+                        let line = JSON.parse(response.data.data);
+                        if(this.lastLine.id !== line.id) {
+                            this.lastLine = JSON.parse(response.data.data);
+                            this.lines.push(this.lastLine);
+                            if (this.lines.length > 7) {
+                                this.lines.splice(0, 1);
+                            }
+                            return true;
+                        }
+                        return false;
                     })
                     .catch((error) => {
                         console.log(error.message);
+                        return null;
                     });
+            },
+            switchCaret() {
+                this.console_ = this.console_ === 'Console▮' ? 'Console▯' : 'Console▮';
             }
         },
 
@@ -78,11 +87,13 @@
      height: 200px;
      background-color: black;
      opacity: 80%;
+     overflow-y: hidden;
  }
  .cust-radius-buttom {
      border-radius: 0px 0px 5px 5px;
  }
-    .text-red {
-        color: red;
-    }
+.text-red {
+    color: red;
+}
+
 </style>

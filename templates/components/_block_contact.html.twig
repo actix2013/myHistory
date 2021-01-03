@@ -1,28 +1,55 @@
 <div class="d-flex flex-fill flex-column m-2 cust-shadow cust-backgroud-motif">
-    <div class="d-inline-flex ml-5 mt-2 border-bottom cust-radius-top">
-        <h2>{{ title|default('Save') }}</h2>
+    <div class="d-inline-flex ml-2 mt-2 border-bottom cust-radius-top">
+        <h2><strong>{{ title|default('CONTACT') }}</strong></h2>
     </div>
-    <div class="d-inline-flex">
+    <div class="d-inline-flex block-list">
         {% if user %}
-        <ul class="ml-5 ml-lg-3 mt-3 list-unstyled">
-            <li class="ml-5 ml-lg-3">
-                <p><strong> {{ user.firstName }} {{ user.lastName }}</p></strong>
-            </li>
-            <li class="ml-5 ml-lg-3">
-                <p>{{ user.age }} ans,  {{ user.nbChild }} enfant(s)</p>
-            </li>
-            <li class="ml-5 ml-lg-3">
-                <p>Tél. : {{ user.mobile }} </p>
-            </li>
-            <li class="ml-5 ml-lg-3">
-                <p>email : {{ user.email }}</p>
-            </li>
-            <li class="ml-5 ml-lg-3">
-                <p>linkedin :</p>
-            </li>
-        </ul>
+            <ul class="ml-4 ml-lg-3 mt-2 list-unstyled">
+                <li class="d-flex align-content-center flex-nowrap">
+                        <div class="icon">
+                            {{ include('components/_icon_user.html.twig') }}
+                        </div>
+                        <div class="text">
+                            {{ user.age }} ans, {{ user.nbChild }} enfant(s)
+                        </div>
+                </li>
+                <li class="d-flex">
+                    <div class="icon">
+                        {{ include('components/icons/_icon_address.html.twig') }}
+                    </div>
+                    <div class="text">
+                        {{ user.addressStreetNumber }}  {{ user.addressStreet }} {{ user.AddressCity }}
+                    </div>
+                </li>
+                <li class="d-flex">
+                        <div class="icon">
+                            {{ include('components/icons/_icon_phone.html.twig') }}
+                        </div>
+                        <div class="text">
+                            {{ user.mobile }}
+                        </div>
+                </li>
+                <li class="d-flex ">
+                    <div class="icon">
+                        {{ include('components/icons/_icon_mailbox.html.twig') }}
+                    </div>
+                    <div class="text">
+                        {{ user.email }}
+                    </div>
+                </li>
+                <li class="d-flex">
+                    <div class="icon">
+                        {{ include('components/icons/_icon_linkedin.html.twig') }}
+                    </div>
+                    <div class="text link d-flex ">
+                        {% set url = "https://www.linkedin.com/in/lyon-gca" %}
+                        <a class="align-self-center" href={{ url }}>likedIn</a>
+                    </div>
+                </li>
+            </ul>
         {% else %}
-            <p>Connectez vous pour acceder aux informations</p>
+            <p>Connectez vous pour accéder aux informations</p>
         {% endif %}
     </div>
 </div>
+

@@ -1,13 +1,13 @@
 <div class="d-flex flex-fill flex-column m-2 cust-shadow cust-backgroud-motif">
-    <div class="d-inline-flex ml-5 mt-2 border-bottom cust-radius-top">
-        <h2>{{ title|default('Save') }}</h2>
+    <div class="d-inline-flex ml-2 mt-2 border-bottom cust-radius-top">
+        <h2><strong>{{ title|default('PROFIL') }}</strong></h2>
     </div>
     <div class="d-inline-flex">
         {% if user %}
-        <ul class="ml-5 ml-lg-3 mt-3 list-unstyled">
+            <ul class="ml-4 ml-lg-3 mr-lg-1 mt-2 list-unstyled">
             {% for langue in langues %}
-                <li class="ml-5 ml-lg-3">
-                    <p> {{ langue.name }}</p>
+                <li class="text-lh-20">
+                    {{ langue.name }}
                 </li>
             {% endfor %}
         </ul>

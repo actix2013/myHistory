@@ -1,11 +1,11 @@
 <div class="d-flex flex-fill flex-column m-2 cust-shadow cust-backgroud-motif">
-    <div class="d-inline-flex ml-5 mt-2 border-bottom cust-radius-top">
-        <h2>{{ title|default('') }}</h2>
+    <div class="d-inline-flex ml-2 mt-2 border-bottom cust-radius-top">
+        <h2><strong>{{ title|default('PROFIL') }}</strong></h2>
     </div>
     <div class="d-inline-flex">
-        <ul class="mt-3 list-unstyled">
-            <li class="ml-5 ml-lg-3 mr-5 mr-lg-1">
-                <p> {{ user.profil|raw }} </p>
+        <ul class="ml-4 ml-lg-3 mr-lg-1 mt-2 list-unstyled">
+            <li >
+                <p class="text-lh-20"> {{ user.profil|raw }} </p>
             </li>
         </ul>
     </div>

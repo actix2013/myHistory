@@ -9,7 +9,7 @@ body , html  {
 .container-navbar {
     height: 65px;
     min-height: 65px;
-    background-color: red;
+    background-color: rgba(218, 8, 8, 1);
 }
 
 .container-btn {
@@ -74,17 +74,16 @@ article {
 
 
 .cust-textcolor-red {
-    corlor: red;
+    corlor: rgba(218, 8, 8, 1);
 }
 
 .cust-form-edit {
-
     div{
         form{
             button {
                 margin-bottom: 10px;
                 border-style: solid;
-                border-color: red;
+                border-color: rgba(218, 8, 8, 1);
                 border-width: 2px;
                 background-color: white;
             }
@@ -92,12 +91,12 @@ article {
     }
     a {
         padding-top: 30px !important;
-        color: red;
+        color: rgba(218, 8, 8, 1);
     }
     form {
         button{
             border-style: solid;
-            border-color: red;
+            border-color: rgba(218, 8, 8, 1);
             border-width: 2px;
             background-color: white;
         }
@@ -111,8 +110,9 @@ article {
 }
 
 .cust-background-red-central {
-    background: rgb(255, 255, 255);
-    background: linear-gradient(90deg, rgba(255, 255, 255, 1) 20%, rgba(250, 0, 0, 1) 20%, rgba(255, 0, 0, 1) 80%, rgba(255, 255, 255, 1) 80%);
+    background: rgba(255, 255, 255,0);
+    //background: linear-gradient(90deg, rgba(255, 255, 255, 1) 20%, rgba(250, 0, 0, 1) 20%, rgba(255, 0, 0, 1) 80%, rgba(255, 255, 255, 1) 80%);
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 20%, rgba(218, 8, 8, 1) 20%, rgba(218, 8, 8, 1) 80%, rgba(255, 255, 255, 0) 80%);
 }
 
 .cust-shadow {
@@ -134,4 +134,51 @@ article {
 
 .fullheight{
     min-height: 95vh;
+}
+
+.text-lh-20 {
+    line-height: 20px;
+}
+
+.block-list {
+    ul {
+        li {
+            .icon {
+                margin-right: 8px;
+                color: rgb(193, 7, 23);
+            }
+            .link {
+                a {
+                    padding-top: 1px;
+                }
+                a:link {
+                    color: rgb(47, 62, 79);
+                    background-color: transparent;
+                    text-decoration: dotted rgb(193, 7, 23);
+                }
+
+                a:visited {
+                    color: darken(rgb(47, 62, 79),80%);
+                    background-color: transparent;
+                    text-decoration: none;
+                }
+
+                a:hover {
+                    color: rgb(193, 7, 23);
+                    background-color: transparent;
+                    text-decoration: underline;
+                }
+
+                a:active {
+                    color: yellow;
+                    background-color: transparent;
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}
+
+.pos-r {
+    position: relative;
 }

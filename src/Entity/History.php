@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\HistoryRepository", repositoryClass=HistoryRepository::class)
  */
-class History
+class History implements \JsonSerializable
 {
     /**
      * @ORM\Id
@@ -136,11 +136,14 @@ class History
         return $this;
     }
 
-    public function __toArray()
+    /**
+     * @return array
+     */
+    public function __toArray(): array
     {
         return [
             'id' => $this->getId(),
-            'userName' => $this->userName,
+            'userName' => $this->getUserName(),
             'dateCreated' => $this->getDateCreated(),
             'description' => $this->getDescription(),
             'timeStamp' => $this->getTimestamp(),
@@ -148,4 +151,13 @@ class History
             'host' => $this->getHost(),
         ];
     }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize(): array
+    {
+        return $this->__toArray();
+    }
+
 }
