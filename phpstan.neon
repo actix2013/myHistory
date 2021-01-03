@@ -35,5 +35,6 @@ parameters:
         - '#Symfony\\Component\\Security\\Core\\User\\UserInterface is not subtype of#'
         - '#Call to an undefined method Knp\\Bundle\\PaginatorBundle\\Pagination\\SlidingPaginationInterface.*#'
         - '#Call to an undefined method DateTimeInterface::add\(\)#'
+        - '#The class * has a coupling between objects value of *. Consider to reduce the number of dependencies under *.#'
     symfony:
         container_xml_path: %rootDir%/../../../var/cache/dev/srcApp_KernelDevDebugContainer.xml

@@ -12,18 +12,18 @@ use Symfony\Component\Validator\Constraints as Assert;
 class History implements \JsonSerializable
 {
     /**
-     * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue
-     */
-    private $id;
-    /**
      * @ORM\Column(type="date")
      * @Assert\Date
      *
      * @var null|\DateTimeInterface
      */
     protected $dateCreated;
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue
+     */
+    private $id;
     /**
      * @ORM\Column(type="string", length=45)
      */
@@ -100,12 +100,12 @@ class History implements \JsonSerializable
         return $this;
     }
 
-    public function getTimestamp(): ?float
+    public function getTimestamp(): ?int
     {
         return $this->timestamp;
     }
 
-    public function setTimestamp(float $timestamp): self
+    public function setTimestamp(int $timestamp): self
     {
         $this->timestamp = $timestamp;
 
@@ -139,7 +139,7 @@ class History implements \JsonSerializable
     /**
      * @return array
      */
-    public function __toArray(): array
+    public function toArray(): array
     {
         return [
             'id' => $this->getId(),
@@ -157,7 +157,6 @@ class History implements \JsonSerializable
      */
     public function jsonSerialize(): array
     {
-        return $this->__toArray();
+        return $this->toArray();
     }
-
 }

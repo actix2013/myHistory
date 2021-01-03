@@ -47,7 +47,6 @@ class HistoryController extends AbstractController
      */
     public function getHistory(/*Request $request, SerializerInterface $serializer*/): Response
     {
-
         /**
          * @var History $lastHistory
          */
@@ -56,6 +55,7 @@ class HistoryController extends AbstractController
         $objJson = json_encode($lastHistory);
         $response->setData(['data' => $objJson]);
         $response->headers->set('Content-Type', 'application/json');
+
         return $response;
     }
 
@@ -85,18 +85,11 @@ class HistoryController extends AbstractController
         $history->setHost($request->getHost());
         $this->getDoctrine()->getManager()->persist($history);
         $this->getDoctrine()->getManager()->flush();
-
         $response = new Response();
-
         $response->setContent('<html><body><h1>request accepted and save ok</h1></body></html>');
         $response->setStatusCode(Response::HTTP_OK);
-
-// sets a HTTP response header
         $response->headers->set('Content-Type', 'text/html');
 
-// prints the HTTP headers followed by the content
-        $response->send();
+        return $response->send();
     }
-
-
 }
