@@ -12,60 +12,67 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class MissionType extends AbstractType
 {
     /**
-     * @param \Symfony\Component\Form\FormBuilderInterface<FormBuilderInterface> $builder
-     * @param array<array>                                        $options
+     * @param FormBuilderInterface<FormBuilderInterface> $builder
+     * @param array<array>                               $options
      */
-    public function buildForm(FormBuilderInterface $builder, array $options) : void
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        if ($options) {
+        }
         $builder
-            ->add('establishmentName', null, ["label" => "Entreprise"])
-            ->add('establishmentDepartmentNb', null, ["label" => "Département"])
-            ->add('title', null, ["label" => "Titre de la mission"])
-            ->add('dateStart',
-                DateType::class, [
-                    "label" => "Date de début de contrat",
+            ->add('establishmentName', null, ['label' => 'Entreprise'])
+            ->add('establishmentDepartmentNb', null, ['label' => 'Département'])
+            ->add('title', null, ['label' => 'Titre de la mission'])
+            ->add(
+                'dateStart',
+                DateType::class,
+                [
+                    'label' => 'Date de début de contrat',
                     'format' => 'dd MM yyyy',
-                    "placeholder" => ['year' => 'Année', 'month' => 'Mois', 'day' => 'Jour'],
-                    'years' => range(2020, 200)])
-            ->add('dateEnd',
-             DateType::class, [
-                 "label" => "Date de fin de contrat",
-                'format' => 'dd MM yyyy',
-                "placeholder" => ['year' => 'Année', 'month' => 'Mois', 'day' => 'Jour'],
-                'years' => range(2020, 200)])
-            ->add('comment',null, ["label" => "Commentaire"])
-            ->add('mission', null,["label" => "Détails de la mission"])
+                    'placeholder' => ['year' => 'Année', 'month' => 'Mois', 'day' => 'Jour'],
+                    'years' => range(2022, 2000), ]
+            )
+            ->add(
+                'dateEnd',
+                DateType::class,
+                [
+                    'label' => 'Date de fin de contrat',
+                    'format' => 'dd MM yyyy',
+                    'placeholder' => ['year' => 'Année', 'month' => 'Mois', 'day' => 'Jour'],
+                    'years' => range(2022, 2000), ]
+            )
+            ->add('comment', null, ['label' => 'Commentaire'])
+            ->add('mission', null, ['label' => 'Détails de la mission'])
             ->add('linkEstablishment')
-
             ->add('type')
             ->add(
                 'type',
                 ChoiceType::class,
                 [
-                "label" => "Type",
-                "choices" => [
-                    "Expérience" => "experience",
-                    "Compétence" => "competence",
-                    "Formation" => "formation",
-                    ]
+                    'label' => 'Type',
+                    'choices' => [
+                        'Expérience' => 'experience',
+                        'Compétence' => 'competence',
+                        'Formation' => 'formation',
+                    ],
                 ]
             )
             ->add(
                 'user',
-            null,
+                null,
                 [
-                    "label" => "Utilisateur",
-                    "choice_label" => "fullName",
-                    "expanded" => false,
-                    "multiple" => false,
-                ])
-        ;
+                    'label' => 'Utilisateur',
+                    'choice_label' => 'fullName',
+                    'expanded' => false,
+                    'multiple' => false,
+                ]
+            );
     }
 
     /**
-     * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver
+     * @param OptionsResolver $resolver
      */
-    public function configureOptions(OptionsResolver $resolver) : void
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => Mission::class,

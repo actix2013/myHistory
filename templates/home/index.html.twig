@@ -1,39 +1,47 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil{% endblock %}
+{% block title %}Mon Cv{% endblock %}
 
 {% block body %}
-<div class="d-flex flex-row mt-0 ml-5 mr-5">
-    <div class="d-flex w-25 justify-content-center flex-column ml-3 mr-3 mt-0 p-3 bg-white
-        cust-background-red-central">
-    </div>
-</div>
-    <div class="
-        d-flex flex-fil flex-column justify-content-center align-items-center
-        pt-5 pb-5  rounded-0
-        cust-backgroud-motif cust-shadow pos-r">
-        <h1 class="text-danger">GUILLAUME CAVALIE</h1>
-        <h2>Développeur Web PHP / Symfony (Junior) </h2>
+    <div class="page-content pt-3">
 
-    </div>
-    <div class="d-flex flex-row mt-0 ml-5 mr-5">
-        <div class="d-flex w-25 justify-content-center flex-column ml-3 mr-3 mt-0 p-3 bg-white
-        cust-background-red-central">
-            {# Section DATA Start: dedicated for pass DATA between twig and vuejs #}
-            <div ref="lines" data-lines="{{ lines }}"></div>
-            {# Section End DATA #}
-            {{ include("/components/_block_contact.html.twig", {'title': 'CONTACT'}) }}
-            {{ include("/components/_block_profil.html.twig", {'title': 'PROFIL'}) }}
-            {{ include("/components/_block_softskills.html.twig", {'title': 'SOFT SKILLS'}) }}
-            {{ include("/components/_block_interet.html.twig", {'title': 'INTERETS'}) }}
-            {{ include("/components/_block_langues.html.twig", {'title': 'LANGUES'}) }}
-            {{ include("/components/_block_console.html.twig") }}
+        <div class="
+                d-flex flex-fil flex-column justify-content-center align-items-center
+                pt-5 pb-5  rounded-0
+                page-content-title pos-r"
+        >
+            <h1 class="text-danger">GUILLAUME CAVALIE</h1>
+            <h2>Développeur Web PHP / Symfony (Junior) </h2>
         </div>
-        <div class="d-flex w-75 justify-content-start flex-column m-3 pl-5 pr-5 pt-3 pb-3 bg-white">
-            {{ include('/components/_block_experiences.html.twig', {'title': 'EXPERIENCES'}) }}
-            {{ include('/components/_block_competence.html.twig', {'title': 'COMPETENCES'}) }}
+        <div class="d-flex mt-0 ml-5 mr-5">
+            <div class="
+                        d-flex w-25 flex-column ml-3 mr-3 mt-0 p-3
+                        bg-white
+                        page-content-background-center-red
+                        page-content-left-panel"
+            >
+                {# Section DATA Start: dedicated for pass DATA between twig and vuejs #}
+                <div ref="lines" data-lines="{{ lines }}"></div>
+                {# Section End DATA #}
+                <div class="page-content-spacer"></div>
+                {{ include("/components/_block_contact.html.twig", {'title': 'CONTACT'}) }}
+                {{ include("/components/_block_profil.html.twig", {'title': 'PROFIL'}) }}
+                {{ include("/components/_block_softskills.html.twig", {'title': 'SOFT SKILLS'}) }}
+                {{ include("/components/_block_interet.html.twig", {'title': 'INTERETS'}) }}
+                {{ include("/components/_block_langues.html.twig", {'title': 'LANGUES'}) }}
+                {{ include("/components/_block_console.html.twig") }}
+            </div>
+            <div class="mt-2 p-3 bg-white page-content-central-panel">
+                <div>
+                    <div class="page-content-spacer"></div>
+                    <div class="">
+                        {{ include('/components/_block_experiences.html.twig', {'title': 'EXPERIENCES'}) }}
+                    </div>
+                    <div class="">
+                        {{ include('/components/_block_competence.html.twig', {'title': 'COMPETENCES'}) }}
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-
-
 {% endblock %}

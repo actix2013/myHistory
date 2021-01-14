@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\History;
 use App\Entity\User;
+use App\Repository\MissionRepository;
 use App\Repository\SkillRepository;
 use App\Repository\TaskRepository;
 use App\Repository\UserRepository;
@@ -42,19 +43,25 @@ class HomeController extends AbstractController
      * @var TaskRepository
      */
     private $taskRepository;
+    /**
+     * @var MissionRepository
+     */
+    private $missionRepository;
 
     public function __construct(
         UserRepository $userRepository,
         HttpClientInterface $client,
         UserPasswordEncoderInterface $userPasswordEncoder,
         TimeCalculator $timeCalculator,
-        TaskRepository $taskRepository
+        TaskRepository $taskRepository,
+        MissionRepository $missionRepository
     ) {
         $this->client = $client;
         $this->userPasswordEncoder = $userPasswordEncoder;
         $this->userRepository = $userRepository;
         $this->timeCalculator = $timeCalculator;
         $this->taskRepository = $taskRepository;
+        $this->missionRepository = $missionRepository;
     }
 
     /**
@@ -155,7 +162,7 @@ class HomeController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         foreach ($missions as $mission) {
             $startDate = $mission->getDateStart() ? $mission->getDateStart() : new DateTime('now');
-            $endDate = $mission->getDateEnd() ? $mission->getDateStart() : new DateTime('now');
+            $endDate = $mission->getDateEnd() ? $mission->getDateEnd() : new DateTime('now');
             $duration = $this->timeCalculator->calculateTime($startDate, $endDate);
             $mission->setDuration($duration);
             $em->persist($mission);

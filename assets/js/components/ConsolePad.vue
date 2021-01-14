@@ -1,6 +1,6 @@
 <template>
 
-    <div class="d-flex flex-fill flex-column m-2 cust-shadow cust-backgroud-motif">
+    <div class="d-flex flex-column m-2 block-shadow block-background-motif">
         <div class="d-inline-flex ml-2 mt-2 border-bottom cust-radius-top">
             <h2><strong>{{ console_ }}</strong></h2>
         </div>

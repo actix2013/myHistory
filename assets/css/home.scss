@@ -1,0 +1,55 @@
+.page-content {
+    min-height: 100%;
+    position: relative;
+
+    .block-background-motif {
+        background: linear-gradient(135deg, #dadada 2.5%, #fff 2.5%, #fff 47.5%, #dadada 47.5%, #dadada 52.5%, #fff 52.5%, #fff 97.5%, #dadada 97.5%);
+        background-size: 10px 10px;
+        background-position: 50px 50px;
+    }
+
+    .block-shadow {
+        -moz-box-shadow: 0px 0px 10px 3px #656565;
+        -webkit-box-shadow: 0px 0px 10px 3px #656565;
+        -o-box-shadow: 0px 0px 10px 3px #656565;
+        box-shadow: 0px 0px 10px 3px #656565;
+        filter: progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=NaN, Strength=10);
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+    }
+
+    .page-content-title {
+        @extend .block-background-motif;
+        @extend .block-shadow;
+        z-index: 2;
+
+    }
+
+    .page-content-left-panel{
+        @extend .block-shadow;
+        position: absolute;
+        left: 0px;
+        top: -5px;
+        min-height: 100%;
+    }
+
+    .page-content-central-panel {
+        position: absolute;
+        left: 25%;
+        top: -5px;
+        min-height: 100%;
+        width:75%;
+    }
+
+    .page-content-spacer {
+        height: 250px;
+    }
+
+    .page-content-background-center-red {
+        background: rgba(255, 255, 255, 0);
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0) 20%, rgba(218, 8, 8, 1) 20%, rgba(218, 8, 8, 1) 80%, rgba(255, 255, 255, 0) 80%);
+    }
+}
+
+

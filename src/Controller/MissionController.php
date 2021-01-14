@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Mission;
-use App\Entity\User;
 use App\Form\MissionType;
 use App\Repository\MissionRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,6 +17,10 @@ class MissionController extends AbstractController
 {
     /**
      * @Route("/", name="mission_index", methods={"GET"})
+     *
+     * @param MissionRepository $missionRepository
+     *
+     * @return Response
      */
     public function index(MissionRepository $missionRepository): Response
     {
@@ -27,22 +30,28 @@ class MissionController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="mission_new", methods={"GET","POST"})
-     * @Route("/new/{id<[0-9]{1,}>}", name="mission_new_setuser", methods={"GET","POST"})
+     * @Route("/new", name="mission_new", methods={"GET", "POST"})
+     * @Route("/new/{id<[0-9]{1,}>}", name="mission_new_setuser", methods={"GET", "POST"})
+     *
+     * @param Request $request
+     *
+     * @return Response
      */
-    public function new(Request $request, ?User $user): Response
+    public function new(Request $request): Response
     {
         $mission = new Mission();
         $form = $this->createForm(MissionType::class, $mission);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            if($user) {
-                $user->addMission($mission);
-            }
+            $mission = $form->getData();
+//            if($user) {
+//                $user->addMission($mission);
+//            }
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($user);
+//            $entityManager->persist($user);
             $entityManager->persist($mission);
+
             $entityManager->flush();
 
             return $this->redirectToRoute('mission_index');
@@ -65,7 +74,12 @@ class MissionController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="mission_edit", methods={"GET","POST"})
+     * @Route("/{id}/edit", name="mission_edit", methods={"GET", "POST"})
+     *
+     * @param Request $request
+     * @param Mission $mission
+     *
+     * @return Response
      */
     public function edit(Request $request, Mission $mission): Response
     {
@@ -86,6 +100,11 @@ class MissionController extends AbstractController
 
     /**
      * @Route("/{id}", name="mission_delete", methods={"DELETE"})
+     *
+     * @param Request $request
+     * @param Mission $mission
+     *
+     * @return Response
      */
     public function delete(Request $request, Mission $mission): Response
     {

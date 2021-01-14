@@ -6,21 +6,22 @@ class TimeCalculator
 {
     public function calculateTime(?\DateTimeInterface $start, ?\DateTimeInterface $end): string
     {
-        $nbMounth = 0;
+        $nbMonth = 0;
         $nbYear = 0;
+
         if ($start && $end) {
             $diff = $end->diff($start);
-            $nbMounth = $diff->m;
+            $nbMonth = $diff->m;
             $nbYear = $diff->y;
         }
-        if ($nbMounth > 0 && $nbYear > 0) {
-            return $nbYear.' ans et '.$nbMounth.' mois';
+        if ($nbMonth > 0 && $nbYear > 0) {
+            return $nbYear.' ans et '.$nbMonth.' mois';
         }
-        if (0 === $nbMounth && $nbYear > 0) {
+        if (0 === $nbMonth && $nbYear > 0) {
             return $nbYear.' ans';
         }
-        if ($nbMounth > 0 && 0 == $nbYear) {
-            return $nbMounth.' mois';
+        if ($nbMonth > 0 && 0 == $nbYear) {
+            return $nbMonth.' mois';
         }
 
         return 'error';
