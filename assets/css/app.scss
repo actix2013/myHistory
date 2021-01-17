@@ -2,12 +2,6 @@
 @import "./base.scss";
 @import "./home.scss";
 
-body , html  {
-    width: 100%;
-    height: 100%;
-    background-color:white;
-    font-family: 'Inconsolata', monospace;
-}
 .container-navbar {
     height: 65px;
     min-height: 65px;
@@ -157,4 +151,6 @@ body , html  {
 
 .pos-r {
     position: relative;
+    left:0;
+    top:10px;
 }

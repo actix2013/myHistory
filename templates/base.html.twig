@@ -16,6 +16,7 @@
             {{ include('_navbar.html.twig') }}
         {% endblock %}
     </header>
+
     <main>
         {# {% for category, messages in app.flashes %} #}
         {# {% for message in messages %} #}
@@ -28,14 +29,14 @@
         {# {% endfor %} #}
         {# {% endfor %} #}
 
-        {% block body %}
+        {% block main %}
         {% endblock %}
 
 
     </main>
     <footer>
         {% block footer %}
-
+            {{ include('./_footer.html.twig') }}
         {% endblock %}
     </footer>
 

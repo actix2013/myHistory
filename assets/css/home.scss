@@ -1,9 +1,65 @@
 .page-content {
+    $base-separator: 15px;
+    $first-block-offset: 200px + 1*$base-separator;
+
+    //padding-top: 30px;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 25% 1fr;
     min-height: 100%;
-    position: relative;
+
+    .title-cv {
+        grid-row-start: 1;
+        grid-row-end: 2;
+        grid-column-start: 1;
+        grid-column-end: 4;
+        z-index: 3;
+        max-height: 200px;
+        margin-top: $base-separator;
+    }
+
+    .left-panel {
+        grid-row-start: 1;
+        grid-row-end: 4;
+        grid-column-start: 1;
+        grid-column-end: 2;
+        z-index: 2;
+        background: rgba(255, 255, 255, 0);
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0) 20%, rgba(218, 8, 8, 1) 20%, rgba(218, 8, 8, 1) 80%, rgba(255, 255, 255, 0) 80%);
+         .all-blocks {
+             &:first-child {
+                 margin-top: $first-block-offset !important;
+             }
+         }
+    }
+
+    .right-panel {
+        grid-row-start: 1;
+        grid-row-end: 4;
+        grid-column-start: 2;
+        grid-column-end: 3;
+        margin-top: $first-block-offset;
+        min-height: 100%;
+        z-index: 2;
+        .all-blocks {
+            &:first-child {
+                margin-top: $first-block-offset !important;
+            }
+        }
+    }
 
     .block-background-motif {
-        background: linear-gradient(135deg, #dadada 2.5%, #fff 2.5%, #fff 47.5%, #dadada 47.5%, #dadada 52.5%, #fff 52.5%, #fff 97.5%, #dadada 97.5%);
+        background: linear-gradient(
+                        135deg,
+                        #dadada 2.5%,
+                        #fff 2.5%,
+                        #fff 47.5%,
+                        #dadada 47.5%,
+                        #dadada 52.5%,
+                        #fff 52.5%,
+                        #fff 97.5%,
+                        #dadada 97.5%
+        );
         background-size: 10px 10px;
         background-position: 50px 50px;
     }
@@ -22,34 +78,8 @@
     .page-content-title {
         @extend .block-background-motif;
         @extend .block-shadow;
-        z-index: 2;
-
     }
 
-    .page-content-left-panel{
-        @extend .block-shadow;
-        position: absolute;
-        left: 0px;
-        top: -5px;
-        min-height: 100%;
-    }
-
-    .page-content-central-panel {
-        position: absolute;
-        left: 25%;
-        top: -5px;
-        min-height: 100%;
-        width:75%;
-    }
-
-    .page-content-spacer {
-        height: 250px;
-    }
-
-    .page-content-background-center-red {
-        background: rgba(255, 255, 255, 0);
-        background: linear-gradient(90deg, rgba(255, 255, 255, 0) 20%, rgba(218, 8, 8, 1) 20%, rgba(218, 8, 8, 1) 80%, rgba(255, 255, 255, 0) 80%);
-    }
 }
 
 
