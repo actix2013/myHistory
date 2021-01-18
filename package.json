@@ -22,6 +22,7 @@
     },
     "dependencies": {
         "axios": "^0.21.0",
-        "jquery": "^3.5.1"
+        "jquery": "^3.5.1",
+        "vue-svg-loader": "^0.16.0"
     }
 }

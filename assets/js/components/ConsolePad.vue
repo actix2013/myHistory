@@ -18,6 +18,7 @@
 <script>
     import ConsolePadLine from './ConsolePadLine';
     import axios from "axios";
+
     export default {
         components: {
             ConsolePadLine,

@@ -7,11 +7,8 @@
 
 // any CSS you import will output into a single css file (app.css in this case)
 import '../css/app.scss';
-import Vue from 'vue';
-import ConsolePad from "./components/ConsolePad";
-import blockTitle from "./components/title/blockExperience";
-// Need jQuery? Install it with "yarn add jquery", then uncomment to import it.
 
+// Need jQuery? Install it with "yarn add jquery", then uncomment to import it.
 
 require('bootstrap');
 const $ = require('jquery');
@@ -33,12 +30,5 @@ new Vue({
     render: h => h(AdressLine)
 });
 */
-new Vue({
-    el: '#consolePad',
-    render: h => h(ConsolePad)
-});
 
-new Vue({
-    el: '#blockTitle',
-    render: h => h(blockTitle)
-});
+

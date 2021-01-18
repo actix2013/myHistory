@@ -80,6 +80,15 @@
         @extend .block-shadow;
     }
 
+    .block-title {
+        max-height: 25px;
+        overflow: visible;
+    }
+    .svg-block-title {
+        max-width: 35px;
+        height:auto;
+    }
+
 }
 
 

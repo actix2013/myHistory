@@ -2,7 +2,8 @@
     <div class="d-inline-flex ml-5 mt-2 border-bottom cust-radius-top">
 
         <div class="d-inline-flex">
-            <h2 class="text-danger"><strong>{{ title|default('') }}</strong>
+            <div id="competence-app" data-title="COMPETENCES"></div>
+            <h2>
                 {% if app.user  %}
                     <a class="ml-1 text-danger" data-toggle="tooltip" data-placement="right" title="Ajouter une expérience"
                        href="{{ path("mission_new_setuser",{ "id": user.id } ) }}">
